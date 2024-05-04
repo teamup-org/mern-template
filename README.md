@@ -1,9 +1,6 @@
 ## TODO:
-* coverage
-* Auth0
-* Profile page
-* Photo upload
-
+* Page structure, profile page
+* File upload
 
 ## To enter dev mode with React hot module replacement
 1. `npm run build`
