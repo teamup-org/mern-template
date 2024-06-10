@@ -9,7 +9,6 @@ const Profile = () => {
     return <div>Loading ...</div>;
   }
 
-  //isAuthenticated && user &&
   return (
     isAuthenticated &&
     user && (
