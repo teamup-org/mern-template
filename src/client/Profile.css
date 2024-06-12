@@ -1,0 +1,159 @@
+/* Styling from Welcome Page Team */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+  }
+  
+  .home-page {
+    text-align: center;
+    margin-top: 80px; /* Add this line */
+  }
+  
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background: #f8f8f8;
+    border-bottom: 1px solid #ddd;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+  }
+  
+  .logo {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+  }
+  
+  nav li {
+    margin: 0 10px;
+  }
+  
+  nav a {
+    text-decoration: none;
+    color: #333;
+  }
+  
+  .nav-button {
+    background-color: black;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    margin-left: 20px;
+    margin-right: 20px;
+    display: inline-block;
+  }
+  
+  .button {
+    background-color: black;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .hero {
+    padding: 130px 20px 80px;
+    background: #f0f0f0;
+  }
+  
+  .hero h1 {
+    font-size: 36px;
+    margin: 0 0 10px;
+  }
+  
+  .hero p {
+    font-size: 18px;
+    margin: 0 0 20px;
+  }
+  
+  .content {
+    padding: 20px;
+  }
+  
+  .content-row {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .content-item {
+    width: 45%;
+    text-align: left;
+  }
+  
+  .content-item img {
+    width: 100%;
+    height: auto;
+    max-height: 200px;
+    object-fit: cover;
+  }
+  
+  .content-item h2 {
+    font-size: 24px;
+  }
+  
+  .features {
+    background: #f8f8f8;
+    padding: 60px;
+    text-align: left;
+  }
+  
+  .features h2 {
+    text-align: left;
+  }
+  
+  .features-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .feature-item {
+    width: 45%;
+    margin: 10px 0;
+  }
+  
+  .feature-item h3 {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .feature-item p {
+    font-size: 14px;
+  }
+  
+  footer {
+    padding: 20px;
+    background: #333;
+    color: #fff;
+  }
+  
+  footer button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    background: #fff;
+    color: #333;
+    border: none;
+  }
+  
+  .view-profile {
+    margin-top: 80px; /* Add this line */
+  }
