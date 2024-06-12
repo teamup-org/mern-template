@@ -2,10 +2,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import Profile from "./Profile";
-import './HomePage.css'; // Import the CSS file for styling
+import './HomePage.css';
 
-import sample1 from './images/sample1.png'; // Import image
-import sample2 from './images/sample2.jpg'; // Import image
+import sample1 from './images/sample1.png';
+import sample2 from './images/sample2.jpg';
+import logo from './images/teamup-logo.png';
 
 const HomePage = () => {
   const { loginWithRedirect, logout, isAuthenticated } = useAuth0();
@@ -13,7 +14,9 @@ const HomePage = () => {
   return (
     <div className="home-page">
       <header>
-        <div className="logo">YourLogo</div>
+        <div className="logo">
+          <img src={logo} alt="TeamUp Logo" className="logo-image" />
+        </div>
         <nav>
           <ul>
             <li><Link to="/">About Us</Link></li>
@@ -38,46 +41,48 @@ const HomePage = () => {
       
       <main>
         <section className="hero">
-          <h1>Being in the community</h1>
-          <p>App for Good | Summer 2024</p>
+          <h1>Impact The World Together</h1>
+          <p>Apps for Good | Summer 2024</p>
           <button className="button">Learn More</button>
         </section>
         
         <section className="content">
-          <div className="content-row">
-            <div className="content-item">
-              <img src={sample1} alt="Content 1" />
-              <h2>We want to improve the world!</h2>
-              <p>We want to explain more about our product.</p>
+          <div className="content-item">
+            <div className="text-container left-text">
+              <h2>Product #1</h2>
+              <p>Here we will explain more about our first product from Team Up.</p>
               <button className="button">Learn More</button>
             </div>
-            <div className="content-item">
-              <img src={sample2} alt="Content 2" />
-              <h2>How App for good works?</h2>
-              <p>Here is a part of the mission of App for good.</p>
+            <img src={sample1} alt="Content 1" />
+          </div>
+          <div className="content-item">
+            <img src={sample2} alt="Content 2" />
+            <div className="text-container right-text">
+              <h2>Product #2</h2>
+              <p>Here we will explain more about our second product from Team Up.</p>
               <button className="button">Learn More</button>
             </div>
           </div>
         </section>
         
         <section className="features">
-          <h2>Main features</h2>
+          <h2>Team Up With Us</h2>
           <div className="features-grid">
             <div className="feature-item">
-              <h3>Share with others</h3>
-              <p>Use this section to explain a benefit of your product.</p>
+              <h3>Create</h3>
+              <p>Work on technology projects tailored to address real-world issues.</p>
             </div>
             <div className="feature-item">
-              <h3>Login</h3>
-              <p>Use this section to explain a benefit of your product.</p>
+              <h3>Serve</h3>
+              <p>Enhance the lives of others through software development and gain the opportunity to take on real-world projects.</p>
             </div>
             <div className="feature-item">
-              <h3>Easy to use</h3>
-              <p>Use this section to explain a benefit of your product.</p>
+              <h3>Collaborate</h3>
+              <p>Meet other like-minded students and learn to collaborate through the software development process.</p>
             </div>
             <div className="feature-item">
-              <h3>Avoid the hassle</h3>
-              <p>Use this section to explain a benefit of your product.</p>
+              <h3>Support</h3>
+              <p>Learn how to use project management tools, cloud computing resources, and hardware from our industry professionals.</p>
             </div>
           </div>
         </section>

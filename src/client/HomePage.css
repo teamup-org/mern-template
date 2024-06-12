@@ -22,9 +22,8 @@ header {
   z-index: 1000;
 }
 
-.logo {
-  font-size: 24px;
-  font-weight: bold;
+.logo-image {
+  height: 40px;
 }
 
 nav ul {
@@ -39,9 +38,10 @@ nav li {
   margin: 0 10px;
 }
 
-nav a {
+nav a, .nav-button {
   text-decoration: none;
   color: #333;
+  font-size: 14px;
 }
 
 .nav-button {
@@ -49,9 +49,7 @@ nav a {
   color: white;
   padding: 10px 20px;
   border-radius: 5px;
-  text-decoration: none;
-  margin-left: 20px;
-  margin-right: 20px;
+  margin: 0 20px;
   display: inline-block;
 }
 
@@ -60,9 +58,10 @@ nav a {
   color: white;
   padding: 10px 20px;
   border-radius: 5px;
-  text-decoration: none;
   border: none;
   cursor: pointer;
+  font-size: 16px;
+  text-decoration: none;
 }
 
 .hero {
@@ -71,50 +70,54 @@ nav a {
 }
 
 .hero h1 {
-  font-size: 36px;
+  font-size: 42px;
   margin: 0 0 10px;
 }
 
 .hero p {
-  font-size: 18px;
+  font-size: 22px;
   margin: 0 0 20px;
 }
 
 .content {
-  padding: 20px;
-}
-
-.content-row {
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
-  gap: 20px;
+  padding: 20px 60px;
 }
 
 .content-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 60px;
+}
+
+.content-item img {
+  width: 50%;
+  height: auto;
+  max-height: 300px;
+  object-fit: cover;
+}
+
+.text-container {
   width: 45%;
   text-align: left;
 }
 
-.content-item img {
-  width: 100%;
-  height: auto;
-  max-height: 200px;
-  object-fit: cover;
+.text-container h2 {
+  font-size: 28px;
 }
 
-.content-item h2 {
-  font-size: 24px;
+.text-container p {
+  font-size: 20px;
 }
 
 .features {
   background: #f8f8f8;
-  padding: 60px;
+  padding: 10px 60px 60px;
   text-align: left;
 }
 
 .features h2 {
-  text-align: left;
+  font-size: 28px;
 }
 
 .features-grid {
@@ -128,13 +131,17 @@ nav a {
   margin: 10px 0;
 }
 
+.features-grid .feature-item:nth-child(even) {
+  margin-left: auto;
+}
+
 .feature-item h3 {
-  font-size: 18px;
+  font-size: 24px;
   font-weight: bold;
 }
 
 .feature-item p {
-  font-size: 14px;
+  font-size: 18px;
 }
 
 footer {
@@ -145,7 +152,7 @@ footer {
 
 footer button {
   padding: 10px 20px;
-  font-size: 16px;
+  font-size: 18px;
   cursor: pointer;
   background: #fff;
   color: #333;
