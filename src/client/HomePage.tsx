@@ -1,7 +1,7 @@
-import { Link } from "react-router-dom";
-import LoginButton from "./LoginButton";
-import LogoutButton from "./LogoutButton";
-import Profile from "./Profile";
+import { Link } from 'react-router-dom';
+import LoginButton from './LoginButton';
+import LogoutButton from './LogoutButton';
+import Profile from './Profile';
 
 const HomePage = () => {
   return (
@@ -13,6 +13,6 @@ const HomePage = () => {
       <LogoutButton />
     </div>
   );
-}
+};
 
 export default HomePage;
