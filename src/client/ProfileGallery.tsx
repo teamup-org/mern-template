@@ -4,18 +4,11 @@ import './ProfileGallery.css';
 import Header from './Header';
 import Footer from './Footer';
 
-const ProfileGallery = () => {
-  const { user, isAuthenticated, isLoading } = useAuth0();
-
-  if (isLoading) {
-    return <div>Loading ...</div>;
-  }
-
+const ProfileResult = () => {
+  const { user } = useAuth0();
   return (
-    isAuthenticated &&
     user && (
       <div>
-        <Header />
         <div className="box">
           <img src={user.picture} alt={user.name} />
           <div className="box-info">
@@ -38,6 +31,36 @@ const ProfileGallery = () => {
             </div>
           </div>
         </div>
+      </div>
+    )
+  );
+};
+
+const ProfileGallery = () => {
+  const { user, isAuthenticated, isLoading } = useAuth0();
+
+  if (isLoading) {
+    return <div>Loading ...</div>;
+  }
+
+  return (
+    isAuthenticated &&
+    user && (
+      <div className="container">
+        <Header />
+        <main className="main">
+          <div className="filter">
+            <h1>Filter</h1>
+          </div>
+          <div className="content">
+            <div className="search">
+              <h1>Search</h1>
+            </div>
+            <div className="gallery">
+              <ProfileResult />
+            </div>
+          </div>
+        </main>
         <Footer />
       </div>
     )

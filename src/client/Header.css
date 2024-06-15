@@ -1,20 +1,22 @@
 header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-row: 1 / 2;
   text-align: center;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   padding: 10px 20px;
   background: #f8f8f8;
   border-bottom: 1px solid #ddd;
-  position: fixed;
   width: 100%;
-  top: 0;
-  left: 0;
-  z-index: 1000;
 }
 
 .logo-image {
+  grid-column: 1 / 2;
   height: 40px;
+}
+
+nav {
+  grid-column: 2 / 3;
+  justify-self: flex-end;
 }
 
 nav ul {
