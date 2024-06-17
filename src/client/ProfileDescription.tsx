@@ -1,14 +1,33 @@
-import React, {useRef, useState} from "react";
+import React, {useRef, useState, useEffect} from "react";
 import Profile from "./Profile";
-import { Button, TextField } from "@mui/material";
+import { Button, TextField, Typography } from "@mui/material";
 
 const ProfileDescription = () => {
 
-    const descriptionRef = useRef({value: ''});
+    const [descriptionRef, setDescriptionRef] = useState('');
+    const [message, setMessage] = useState('');
 
-    const handleClick = async (e: any) => {
-        console.log(descriptionRef.current.value)
+    const handleClick = async () => {
+        try {
+            const reqBody = descriptionRef
+            const response = await fetch(`http://localhost:3000/rewrite-ai?message=${reqBody}`,
+                {
+                    method: "POST"
+                }
+            );
+            const data = await response.json();
+            setMessage(data.message);
+            console.log(data)
+        } catch (error) {
+            console.error('Error fetching data:', error);
+            // Handle error
+        }
     }
+
+    const handleChange = (event: any) => {
+        setDescriptionRef(event.target.value);
+    }
+
     return (
       <div>
         <div className="profile-box" style={{outline:'2px solid', width:'30vw', padding:'20px'}}>
@@ -20,12 +39,19 @@ const ProfileDescription = () => {
                 <TextField
                 multiline
                 fullWidth
-                inputRef={descriptionRef}
+                onChange={handleChange}
                 />
             </div>
             <div>
                 <Button onClick={handleClick}> Rewrite With AI </Button>
             </div>
+        </div>
+        <div className="profile-output" style={{outline:'2px solid', width:'30vw', padding:'20px'}}>
+            <Typography
+                sx={{ wordBreak: "break-word" }}
+            >
+                {message}
+            </Typography>
         </div>
       </div>
     );

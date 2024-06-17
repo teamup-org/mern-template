@@ -2,12 +2,14 @@ const path = require('path');
 const ReactRefreshPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 
 const isDevelopment = process.env.NODE_ENV !== 'production';
 
 module.exports = {
   mode: isDevelopment ? 'development' : 'production',
   devServer: {
+    historyApiFallback: true,
     client: { overlay: false },
   },
   entry: {
@@ -23,6 +25,7 @@ module.exports = {
     ],
   },
   plugins: [
+    new Dotenv(),
     isDevelopment && new ReactRefreshPlugin(),
     new ForkTsCheckerWebpackPlugin(),
     new HtmlWebpackPlugin({
