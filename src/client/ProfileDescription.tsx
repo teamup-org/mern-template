@@ -4,11 +4,13 @@ import { Button, TextField, Typography } from "@mui/material";
 
 const ProfileDescription = () => {
 
+    const [isLoading, setIsLoading] = useState(false);
     const [descriptionRef, setDescriptionRef] = useState('');
     const [message, setMessage] = useState('');
 
     const handleClick = async () => {
         try {
+            setIsLoading(true);
             const reqBody = descriptionRef
             const response = await fetch(`http://localhost:3000/rewrite-ai?message=${reqBody}`,
                 {
@@ -16,6 +18,7 @@ const ProfileDescription = () => {
                 }
             );
             const data = await response.json();
+            setIsLoading(false);
             setMessage(data.message);
             console.log(data)
         } catch (error) {
@@ -50,6 +53,7 @@ const ProfileDescription = () => {
             <Typography
                 sx={{ wordBreak: "break-word" }}
             >
+                {isLoading ? <p>loading...</p> : null}
                 {message}
             </Typography>
         </div>
