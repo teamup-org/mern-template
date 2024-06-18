@@ -15,7 +15,7 @@ const HomePage = () => {
     <div className="home-page">
       <header>
         <div className="logo">
-          <img src={logo} alt="TeamUp Logo" className="logo-image" />
+          <img src={logo} alt="TeamUp Logo" className="logo-image" />  {/*Replace logo with respective team app logo*/}
         </div>
         <nav>
           <ul>
@@ -41,8 +41,9 @@ const HomePage = () => {
       
       <main>
         <section className="hero">
-          <h1>Impact The World Together</h1>
-          <p>Apps for Good | Summer 2024</p>
+          <h1>Impact the world Together</h1>
+          <p>Our passionate volunteers are the driving force behind our success.<br/>This dedicated team contributes 
+            their time, talents, and energy across a wide range of areas to support our mission.</p>
           <button className="button">Learn More</button>
         </section>
         
@@ -69,20 +70,22 @@ const HomePage = () => {
           <h2>Team Up With Us</h2>
           <div className="features-grid">
             <div className="feature-item">
-              <h3>Create</h3>
-              <p>Work on technology projects tailored to address real-world issues.</p>
+              <h3>Share with Others</h3>
+              <p>There is a profound joy found in sharing what has been achieved and accumulated with others and having a sense of 
+                community and support being fostered.  It is incredibly fulfilling to know that something worked hard for can help someone 
+                else succeed and find their own path to achievement. In this way, bridges are built, and the collective growth and success of 
+                everyone around is contributed to.</p>
             </div>
             <div className="feature-item">
-              <h3>Serve</h3>
-              <p>Enhance the lives of others through software development and gain the opportunity to take on real-world projects.</p>
+              <h3>Everything-in-One</h3>
+              <p>You'll find everything you need in one place. From a wide range of products and services to comprehensive solutions, we’ve 
+                got you covered. Save time, simplify your life, and enjoy the ease of all in one spot. Discover the convenience today!</p>
             </div>
             <div className="feature-item">
-              <h3>Collaborate</h3>
-              <p>Meet other like-minded students and learn to collaborate through the software development process.</p>
-            </div>
-            <div className="feature-item">
-              <h3>Support</h3>
-              <p>Learn how to use project management tools, cloud computing resources, and hardware from our industry professionals.</p>
+              <h3>Easy to Use</h3>
+              <p>Discover the simplicity and convenience of our app, designed with you in mind. Whether you're a tech enthusiast or a novice, 
+                our intuitive interface ensures a seamless experience for everyone. With straightforward navigation and user-friendly features, 
+                you can effortlessly access everything you need. Say goodbye to complicated processes and hello to efficiency and ease.</p>
             </div>
           </div>
         </section>

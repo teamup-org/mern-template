@@ -1,3 +1,5 @@
+/* HomePage.css */
+
 body, html {
   margin: 0;
   padding: 0;
@@ -23,7 +25,7 @@ header {
 }
 
 .logo-image {
-  height: 40px;
+  height: 40px; /* Adjust height as needed */
 }
 
 nav ul {
@@ -41,7 +43,7 @@ nav li {
 nav a, .nav-button {
   text-decoration: none;
   color: #333;
-  font-size: 14px;
+  font-size: 14px; /* Navbar font size */
 }
 
 .nav-button {
@@ -60,7 +62,7 @@ nav a, .nav-button {
   border-radius: 5px;
   border: none;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 16px; /* Increased button font size */
   text-decoration: none;
 }
 
@@ -70,24 +72,26 @@ nav a, .nav-button {
 }
 
 .hero h1 {
-  font-size: 42px;
+  font-size: 42px; /* Increased font size */
   margin: 0 0 10px;
 }
 
 .hero p {
-  font-size: 22px;
+  font-size: 22px; /* Increased font size */
   margin: 0 0 20px;
+  max-width: 800px; /* Added max-width */
+  margin: 0 auto 20px; /* Center the paragraph */
 }
 
 .content {
-  padding: 20px 60px;
+  padding: 20px 60px; /* Increase left and right padding */
 }
 
 .content-item {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 60px;
+  margin-bottom: 60px; /* Increase padding between sections */
 }
 
 .content-item img {
@@ -103,21 +107,21 @@ nav a, .nav-button {
 }
 
 .text-container h2 {
-  font-size: 28px;
+  font-size: 28px; /* Increased font size */
 }
 
 .text-container p {
-  font-size: 20px;
+  font-size: 20px; /* Increased font size */
 }
 
 .features {
   background: #f8f8f8;
-  padding: 10px 60px 60px;
+  padding: 30px 60px 60px; /* Decreased top padding */
   text-align: left;
 }
 
 .features h2 {
-  font-size: 28px;
+  font-size: 28px; /* Increased font size */
 }
 
 .features-grid {
@@ -132,16 +136,16 @@ nav a, .nav-button {
 }
 
 .features-grid .feature-item:nth-child(even) {
-  margin-left: auto;
+  margin-left: auto; /* Move even items to the right */
 }
 
 .feature-item h3 {
-  font-size: 24px;
+  font-size: 24px; /* Slightly increased font size */
   font-weight: bold;
 }
 
 .feature-item p {
-  font-size: 18px;
+  font-size: 18px; /* Increased font size */
 }
 
 footer {
@@ -152,7 +156,7 @@ footer {
 
 footer button {
   padding: 10px 20px;
-  font-size: 18px;
+  font-size: 18px; /* Increased font size */
   cursor: pointer;
   background: #fff;
   color: #333;
