@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import LoginButton from "./LoginButton";
 import LogoutButton from "./LogoutButton";
 import Profile from "./Profile";
+import FileUpload from "./FileUpload";
 
 const HomePage = () => {
   return (
@@ -11,6 +12,7 @@ const HomePage = () => {
       <Profile />
       <LoginButton />
       <LogoutButton />
+      <FileUpload />
     </div>
   );
 }
