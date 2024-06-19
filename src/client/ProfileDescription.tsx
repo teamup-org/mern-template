@@ -7,14 +7,24 @@ const ProfileDescription = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [descriptionRef, setDescriptionRef] = useState('');
     const [message, setMessage] = useState('');
+    const [temperature, setTemperature] = useState(0);
+    const [maxWords, setMaxWords] = useState(0);
 
     const handleClick = async () => {
         try {
             setIsLoading(true);
             const reqBody = descriptionRef
-            const response = await fetch(`http://localhost:3000/rewrite-ai?message=${reqBody}`,
+            const response = await fetch(`http://localhost:3000/rewrite-ai`,
                 {
-                    method: "POST"
+                    method: "POST",
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        message: reqBody,
+                        temperature: temperature,
+                        maxWords: maxWords
+                    })
                 }
             );
             const data = await response.json();
@@ -53,8 +63,7 @@ const ProfileDescription = () => {
             <Typography
                 sx={{ wordBreak: "break-word" }}
             >
-                {isLoading ? <p>loading...</p> : null}
-                {message}
+                {isLoading ? <p>loading...</p> : message}
             </Typography>
         </div>
       </div>

@@ -11,6 +11,7 @@ const PORT = process.env.PORT || 3000;
 const openai = new OpenAI({apiKey : process.env.OPENAI_API_KEY});
 
 app.use(cors())
+app.use(express.json())
 
 // Serve static files from the 'dist' directory
 app.use(express.static(path.join(__dirname, '..')));
@@ -21,7 +22,7 @@ app.get('/api', (req, res) => {
 });
 
 app.post('/rewrite-ai', async (req, res) => {
-  const message = req.query.message
+  const {message, temperature, maxWords} = req.body;
 
   const completion = await openai.chat.completions.create({
     messages: [{ role: "user", content: `Rewrite this description with 30 words or less: ${message}` }],
