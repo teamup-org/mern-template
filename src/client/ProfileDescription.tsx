@@ -33,6 +33,9 @@ const ProfileDescription = () => {
             console.log(data)
         } catch (error) {
             console.error('Error fetching data:', error);
+            // Display error on UI
+            setIsLoading(false);
+            setMessage('There is an error during your request. Please try again later.');
             // Handle error
         }
     }
