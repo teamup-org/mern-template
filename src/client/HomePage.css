@@ -1,5 +1,3 @@
-/* HomePage.css */
-
 body, html {
   margin: 0;
   padding: 0;
@@ -24,46 +22,19 @@ header {
   z-index: 1000;
 }
 
-.logo-image {
-  height: 40px; /* Adjust height as needed */
-}
-
-nav ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  align-items: center;
-}
-
-nav li {
-  margin: 0 10px;
-}
-
-nav a, .nav-button {
-  text-decoration: none;
-  color: #333;
-  font-size: 14px; /* Navbar font size */
-}
-
-.nav-button {
-  background-color: black;
-  color: white;
-  padding: 10px 20px;
-  border-radius: 5px;
-  margin: 0 20px;
-  display: inline-block;
-}
-
-.button {
+.body-button {
   background-color: black;
   color: white;
   padding: 10px 20px;
   border-radius: 5px;
   border: none;
   cursor: pointer;
-  font-size: 16px; /* Increased button font size */
+  font-size: 16px;
   text-decoration: none;
+}
+
+.body-button:hover {
+  background-color: rgb(75, 75, 75);
 }
 
 .hero {
@@ -72,26 +43,26 @@ nav a, .nav-button {
 }
 
 .hero h1 {
-  font-size: 42px; /* Increased font size */
+  font-size: 42px;
   margin: 0 0 10px;
 }
 
 .hero p {
-  font-size: 22px; /* Increased font size */
+  font-size: 22px;
   margin: 0 0 20px;
-  max-width: 800px; /* Added max-width */
-  margin: 0 auto 20px; /* Center the paragraph */
+  max-width: 800px;
+  margin: 0 auto 20px;
 }
 
 .content {
-  padding: 20px 60px; /* Increase left and right padding */
+  padding: 20px 60px;
 }
 
 .content-item {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 60px; /* Increase padding between sections */
+  margin-bottom: 60px;
 }
 
 .content-item img {
@@ -107,21 +78,21 @@ nav a, .nav-button {
 }
 
 .text-container h2 {
-  font-size: 28px; /* Increased font size */
+  font-size: 28px;
 }
 
 .text-container p {
-  font-size: 20px; /* Increased font size */
+  font-size: 20px;
 }
 
 .features {
   background: #f8f8f8;
-  padding: 30px 60px 60px; /* Decreased top padding */
+  padding: 30px 60px 60px;
   text-align: left;
 }
 
 .features h2 {
-  font-size: 28px; /* Increased font size */
+  font-size: 28px;
 }
 
 .features-grid {
@@ -136,16 +107,16 @@ nav a, .nav-button {
 }
 
 .features-grid .feature-item:nth-child(even) {
-  margin-left: auto; /* Move even items to the right */
+  margin-left: auto;
 }
 
 .feature-item h3 {
-  font-size: 24px; /* Slightly increased font size */
+  font-size: 24px;
   font-weight: bold;
 }
 
 .feature-item p {
-  font-size: 18px; /* Increased font size */
+  font-size: 18px;
 }
 
 footer {
@@ -156,7 +127,7 @@ footer {
 
 footer button {
   padding: 10px 20px;
-  font-size: 18px; /* Increased font size */
+  font-size: 18px;
   cursor: pointer;
   background: #fff;
   color: #333;
