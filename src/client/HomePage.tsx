@@ -99,6 +99,6 @@ const HomePage = () => {
       <Profile />
     </div>
   );
-}
+};
 
 export default HomePage;
