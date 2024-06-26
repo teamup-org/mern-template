@@ -1,6 +1,6 @@
 import React, {useRef, useState, useEffect} from "react";
 import Profile from "./Profile";
-import { Button, TextField, Typography } from "@mui/material";
+import { Button, TextField, Typography, Slider } from "@mui/material";
 
 const ProfileDescription = () => {
 
@@ -44,6 +44,11 @@ const ProfileDescription = () => {
         setDescriptionRef(event.target.value);
     }
 
+    const handleTemperatureChange = (event: any) => {
+        setTemperature(event.target.value);
+        console.log(temperature)
+    }
+
     return (
       <div>
         <div className="profile-box" style={{outline:'2px solid', width:'30vw', padding:'20px'}}>
@@ -60,6 +65,21 @@ const ProfileDescription = () => {
             </div>
             <div>
                 <Button onClick={handleClick}> Rewrite With AI </Button>
+            </div>
+            <div>
+                <Typography id="discrete-slider" gutterBottom>
+                    Temperature: {temperature}
+                </Typography>
+                <Slider
+                    value={temperature}
+                    onChange={handleTemperatureChange}
+                    aria-labelledby="discrete-slider"
+                    valueLabelDisplay="auto"
+                    step={0.1}
+                    marks
+                    min={0}
+                    max={2}
+                />
             </div>
         </div>
         <div className="profile-output" style={{outline:'2px solid', width:'30vw', padding:'20px'}}>
