@@ -2,11 +2,15 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import Profile from "./Profile";
+<<<<<<< HEAD
+import FileUpload from "./FileUpload";
+=======
 import './HomePage.css';
 
 import sample1 from './images/sample1.png';
 import sample2 from './images/sample2.jpg';
 import logo from './images/teamup-logo.png';
+>>>>>>> main
 
 const HomePage = () => {
   const { loginWithRedirect, logout, isAuthenticated } = useAuth0();
@@ -97,6 +101,12 @@ const HomePage = () => {
       </footer>
       
       <Profile />
+<<<<<<< HEAD
+      <LoginButton />
+      <LogoutButton />
+      <FileUpload />
+=======
+>>>>>>> main
     </div>
   );
 };
