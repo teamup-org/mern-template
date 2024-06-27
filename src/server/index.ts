@@ -22,11 +22,13 @@ app.get('/api', (req, res) => {
 });
 
 app.post('/rewrite-ai', async (req, res) => {
-  const {message, temperature, maxWords} = req.body;
+  const {message, temperature, maxWords, tone} = req.body;
 
   const completion = await openai.chat.completions.create({
-    messages: [{ role: "user", content: `Rewrite this description with 30 words or less: ${message}` }],
+    messages: [ {role: "system", content: `You are an assistant that provides information in an ${tone} tone.`},
+      { role: "user", content: `Rewrite this description with ${maxWords} words or less: ${message}` }],
     model: "gpt-3.5-turbo",
+    temperature: temperature,
   });
 
   res.json({message: completion.choices[0].message.content})

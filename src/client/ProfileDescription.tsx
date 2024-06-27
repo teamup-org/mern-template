@@ -25,7 +25,8 @@ const ProfileDescription = () => {
                     body: JSON.stringify({
                         message: reqBody,
                         temperature: temperature,
-                        maxWords: maxWords
+                        maxWords: maxWords,
+                        tone: tone
                     })
                 }
             );
