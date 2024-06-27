@@ -1,14 +1,15 @@
 import React, {useRef, useState, useEffect} from "react";
 import Profile from "./Profile";
-import { Button, TextField, Typography, Slider } from "@mui/material";
+import { Button, TextField, Typography, Slider, FormControl, InputLabel, Select, MenuItem } from "@mui/material";
 
 const ProfileDescription = () => {
 
     const [isLoading, setIsLoading] = useState(false);
     const [descriptionRef, setDescriptionRef] = useState('');
     const [message, setMessage] = useState('');
-    const [temperature, setTemperature] = useState(0);
-    const [maxWords, setMaxWords] = useState(0);
+    const [temperature, setTemperature] = useState(0.2);
+    const [tone, setTone] = useState('technical');
+    const [maxWords, setMaxWords] = useState(20);
 
     const handleClick = async () => {
         try {
@@ -46,7 +47,17 @@ const ProfileDescription = () => {
 
     const handleTemperatureChange = (event: any) => {
         setTemperature(event.target.value);
-        console.log(temperature)
+        console.log("Temperature: " + temperature)
+    }
+
+    const handleMaxWordsChange = (event: any) => {
+        setMaxWords(event.target.value);
+        console.log("Max words: " + maxWords)
+    }
+
+    const handleToneChange = (event: any) => {
+        setTone(event.target.value);
+        console.log("Tone: " + tone)
     }
 
     return (
@@ -67,18 +78,51 @@ const ProfileDescription = () => {
                 <Button onClick={handleClick}> Rewrite With AI </Button>
             </div>
             <div>
-                <Typography id="discrete-slider" gutterBottom>
+                <FormControl fullWidth>
+                    <InputLabel id="tone-label">Tone</InputLabel>
+                    <Select
+                        labelId="tone-label"
+                        id="tone-select"
+                        value={tone}
+                        onChange={handleToneChange}
+                        label="Tone"
+                    >
+                        <MenuItem value="formal">Formal</MenuItem>
+                        <MenuItem value="casual">Casual</MenuItem>
+                        <MenuItem value="technical">Technical</MenuItem>
+                        <MenuItem value="academic">Academic</MenuItem>
+                        <MenuItem value="creative">Creative</MenuItem>
+                    </Select>
+                </FormControl>
+            </div>
+            <div>
+                <Typography id="temperature-slider" gutterBottom>
                     Temperature: {temperature}
                 </Typography>
                 <Slider
                     value={temperature}
                     onChange={handleTemperatureChange}
-                    aria-labelledby="discrete-slider"
+                    aria-labelledby="temperture-slider"
                     valueLabelDisplay="auto"
                     step={0.1}
                     marks
                     min={0}
                     max={2}
+                />
+            </div>
+            <div>
+                <Typography id="wordcount-slider" gutterBottom>
+                    Max Words: {maxWords}
+                </Typography>
+                <Slider
+                    value={maxWords}
+                    onChange={handleMaxWordsChange}
+                    aria-labelledby="wordcount-slider"
+                    valueLabelDisplay="auto"
+                    step={5}
+                    marks
+                    min={20}
+                    max={50}
                 />
             </div>
         </div>
