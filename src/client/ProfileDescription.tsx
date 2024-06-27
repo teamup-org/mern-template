@@ -10,6 +10,7 @@ const ProfileDescription = () => {
     const [temperature, setTemperature] = useState(0.2);
     const [tone, setTone] = useState('technical');
     const [maxWords, setMaxWords] = useState(20);
+    const [advanceSettingDisplay, setAdvanceSettingDisplay] = useState(false);
 
     const handleClick = async () => {
         try {
@@ -60,6 +61,21 @@ const ProfileDescription = () => {
         console.log("Tone: " + tone)
     }
 
+    const handleAdvanceSetting = () => {
+        setAdvanceSettingDisplay(!advanceSettingDisplay)
+    }
+
+    // Reset variables to default when advance setting is closed
+    useEffect(() => {
+        if (!advanceSettingDisplay) {
+            setTemperature(0.2);
+            setTone('technical');
+            setMaxWords(20);
+        }
+    }
+    , [advanceSettingDisplay])
+
+
     return (
       <div>
         <div className="profile-box" style={{outline:'2px solid', width:'30vw', padding:'20px'}}>
@@ -74,10 +90,11 @@ const ProfileDescription = () => {
                 onChange={handleChange}
                 />
             </div>
-            <div>
+            <div style={{display: 'flex', justifyContent: 'space-between', marginBottom: '10px'}}>
                 <Button onClick={handleClick}> Rewrite With AI </Button>
+                <Button onClick={handleAdvanceSetting}> Advance Setting </Button>
             </div>
-            <div>
+            <div style={{display: advanceSettingDisplay ? 'block' : 'none'}}>
                 <FormControl fullWidth>
                     <InputLabel id="tone-label">Tone</InputLabel>
                     <Select
@@ -95,7 +112,7 @@ const ProfileDescription = () => {
                     </Select>
                 </FormControl>
             </div>
-            <div>
+            <div style={{display: advanceSettingDisplay ? 'block' : 'none'}}>
                 <Typography id="temperature-slider" gutterBottom>
                     Temperature: {temperature}
                 </Typography>
@@ -110,7 +127,7 @@ const ProfileDescription = () => {
                     max={2}
                 />
             </div>
-            <div>
+            <div style={{display: advanceSettingDisplay ? 'block' : 'none'}}>
                 <Typography id="wordcount-slider" gutterBottom>
                     Max Words: {maxWords}
                 </Typography>
