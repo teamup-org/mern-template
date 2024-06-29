@@ -1,0 +1,119 @@
+/* Sources:
+- TeamUp Product Portfolio - Style Guide
+- https://www.joshwcomeau.com/css/custom-css-reset/ */
+
+:root {
+  --primary-color: #f8d06d;
+  --secondary-color: #1e1810;
+  --background-color: #ffffff;
+  --grey-color: #757575;
+  --color-text: #1e1810;
+  --color-text-alt: #62615c;
+  --icon-size: 1.5rem;
+
+  --padding-xsm: 0.5rem;
+  --padding-sm: 1rem;
+  --padding-med: 2rem;
+  --padding-lg: 3rem;
+  --padding-xl: 4rem;
+  --padding-split-sm: 0.5rem var(--padding-sm);
+  --padding-split-med: 1rem var(--padding-lg);
+  --padding-split-lg: calc(var(--padding-xl) / 1.5) var(--padding-lg);
+  --gap-sm: 0.5rem;
+  --gap-med: 1rem;
+  --transition: all 0.3s ease;
+}
+
+.icon.active {
+  background-color: var(--primary-color);
+}
+
+.icon.inactive {
+  background-color: var(--grey-color);
+}
+
+.button {
+  background-color: #f8d06d;
+  border-radius: 100px;
+}
+
+.button:hover {
+  cursor: pointer;
+  background-color: black;
+}
+
+a {
+  text-decoration: none;
+  color: #0070c9;
+}
+
+a:hover {
+  color: #ffb100;
+}
+
+@keyframes spinner {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #f8d06d;
+  border-top-color: #1e1810;
+  border-radius: 50%;
+  animation: spinner 1s linear infinite;
+}
+
+li {
+  list-style: none;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  color: var(--color-text);
+  font-family: 'Nunito', sans-serif;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+#root,
+#__next {
+  isolation: isolate;
+}
