@@ -8,7 +8,9 @@
     "start:dev": "concurrently \"webpack serve --hot\" \"npm run start\"",
     "test:react": "jest --detectOpenHandles --config jest.config.react.js",
     "test:node": "jest --detectOpenHandles --config jest.config.node.js",
-    "test": "npm run test:react && npm run test:node"
+    "test": "npm run test:react && npm run test:node",
+    "mongo:setup": "node mongo-setup.js",
+    "mongo:test": "node mongo-test.js" 
   },
   "devDependencies": {
     "@babel/core": "^7.24.5",
@@ -50,6 +52,7 @@
   "dependencies": {
     "@auth0/auth0-react": "^2.2.4",
     "express": "^4.19.2",
+    "mongodb": "^6.7.0",
     "mongoose": "^8.3.3",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
