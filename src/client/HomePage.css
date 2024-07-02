@@ -1,0 +1,164 @@
+/* HomePage.css */
+
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+.home-page {
+  text-align: center;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background: #f8f8f8;
+  border-bottom: 1px solid #ddd;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+.logo-image {
+  height: 40px; /* Adjust height as needed */
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+nav li {
+  margin: 0 10px;
+}
+
+nav a, .nav-button {
+  text-decoration: none;
+  color: #333;
+  font-size: 14px; /* Navbar font size */
+}
+
+.nav-button {
+  background-color: black;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  margin: 0 20px;
+  display: inline-block;
+}
+
+.button {
+  background-color: black;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px; /* Increased button font size */
+  text-decoration: none;
+}
+
+.hero {
+  padding: 130px 20px 80px;
+  background: #f0f0f0;
+}
+
+.hero h1 {
+  font-size: 42px; /* Increased font size */
+  margin: 0 0 10px;
+}
+
+.hero p {
+  font-size: 22px; /* Increased font size */
+  margin: 0 0 20px;
+  max-width: 800px; /* Added max-width */
+  margin: 0 auto 20px; /* Center the paragraph */
+}
+
+.content {
+  padding: 20px 60px; /* Increase left and right padding */
+}
+
+.content-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 60px; /* Increase padding between sections */
+}
+
+.content-item img {
+  width: 50%;
+  height: auto;
+  max-height: 300px;
+  object-fit: cover;
+}
+
+.text-container {
+  width: 45%;
+  text-align: left;
+}
+
+.text-container h2 {
+  font-size: 28px; /* Increased font size */
+}
+
+.text-container p {
+  font-size: 20px; /* Increased font size */
+}
+
+.features {
+  background: #f8f8f8;
+  padding: 30px 60px 60px; /* Decreased top padding */
+  text-align: left;
+}
+
+.features h2 {
+  font-size: 28px; /* Increased font size */
+}
+
+.features-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.feature-item {
+  width: 45%;
+  margin: 10px 0;
+}
+
+.features-grid .feature-item:nth-child(even) {
+  margin-left: auto; /* Move even items to the right */
+}
+
+.feature-item h3 {
+  font-size: 24px; /* Slightly increased font size */
+  font-weight: bold;
+}
+
+.feature-item p {
+  font-size: 18px; /* Increased font size */
+}
+
+footer {
+  padding: 20px;
+  background: #333;
+  color: #fff;
+}
+
+footer button {
+  padding: 10px 20px;
+  font-size: 18px; /* Increased font size */
+  cursor: pointer;
+  background: #fff;
+  color: #333;
+  border: none;
+}
