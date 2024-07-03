@@ -10,7 +10,7 @@
     "test:node": "jest --detectOpenHandles --config jest.config.node.js",
     "test": "npm run test:react && npm run test:node",
     "mongo:setup": "node mongo-setup.js",
-    "mongo:test": "node mongo-test.js" 
+    "mongo:test": "node mongo-test.js"
   },
   "devDependencies": {
     "@babel/core": "^7.24.5",
@@ -61,8 +61,10 @@
     "mongodb": "^6.7.0",
     "mongoose": "^8.3.3",
     "pdf-parse": "^1.1.1",
+    "pdf2pic": "^3.1.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-router-dom": "^6.23.0"
+    "react-router-dom": "^6.23.0",
+    "tesseract.js": "^5.1.0"
   }
 }

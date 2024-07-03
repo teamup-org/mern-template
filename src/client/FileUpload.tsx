@@ -47,9 +47,24 @@ const FileUpload: React.FC = () => {
   const fetchWordCount = async () => {
     if (!uploadedFile) return;
 
+    const fileExtension = uploadedFile.split('.').pop()?.toLowerCase();
+    let endpoint = '';
+
+    if (fileExtension === 'pdf') {
+      endpoint = '/count-words';
+    } else if (['jpeg', 'jpg', 'png'].includes(fileExtension!)) {
+      endpoint = '/count-words-img';
+    } else {
+      console.error('Unsupported file type');
+      return;
+    }
+
     try {
-      const wordCountRes = await axios.get(`/count-words?filePath=${uploadedFile}`);
-      setWordCount(wordCountRes.data.wordCount);
+      const res = await axios.get(endpoint, {
+        params: { filePath: uploadedFile },
+      });
+
+      setWordCount(res.data.wordCount);
     } catch (err) {
       console.error('Failed to fetch word count:', err);
     }

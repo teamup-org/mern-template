@@ -5,7 +5,7 @@ import upload from './upload';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-import { countWordsInPdf, countWordsInPdf3char } from './report';
+import { countWordsInPdf, countWordsInPdf3char, countWordsInImg } from './report';
 
 // upload file routing
 app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
@@ -47,6 +47,16 @@ app.get('/count-words-3char', async (req, res) => {
     res.json({ wordCount });
   } catch (error) {
     res.status(500).json({ error: 'Failed to count words longer than 3 characters in PDF' });
+  }
+});
+
+app.get('/count-words-img', async (req, res) => {
+  const filePath = req.query.filePath as string;
+  try {
+    const wordCount = await countWordsInImg(filePath);
+    res.json({ wordCount });
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to count words in IMG' });
   }
 });
 
