@@ -1,0 +1,10 @@
+name: fastapp
+
+services:
+  - name: deployedtemplate
+    github:
+      repo: teamup-org/mern-template
+      branch: main
+      deploy_on_push: true
+    environment_slug: node-js
+    http_port: 3000
