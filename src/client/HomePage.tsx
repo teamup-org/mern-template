@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import Header from "./Header";
 import Footer from "./Footer";
@@ -30,10 +29,10 @@ const HomePage = () => {
               <p>Here we will explain more about our first product from Team Up.</p>
               <button className="body-button">Learn More</button>
             </div>
-            <img src={sample1} alt="Content 1" />
+            <img src={sample1} alt="Content 1" className="content-image" />
           </div>
           <div className="content-item">
-            <img src={sample2} alt="Content 2" />
+            <img src={sample2} alt="Content 2" className="content-image" />
             <div className="text-container right-text">
               <h2>Product #2</h2>
               <p>Here we will explain more about our second product from Team Up.</p>

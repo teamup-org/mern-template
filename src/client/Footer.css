@@ -13,3 +13,10 @@ footer button {
   color: #333;
   border: none;
 }
+
+.content-item img {
+  width: auto; /* Adjust the width to fit the layout */
+  height: auto; /* Maintain aspect ratio */
+  max-height: 400px;
+  object-fit: contain; /* Ensure the entire image is visible */
+}
