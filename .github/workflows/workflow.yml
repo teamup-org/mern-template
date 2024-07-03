@@ -28,13 +28,5 @@ jobs:
           doctl apps create --spec .do/app.yaml
 
 
-  test:
-    needs: build
-    runs-on: ubuntu-latest
-
-    steps: 
-      # - name: Run tests 
-      #   run: npm test
-
 
   
