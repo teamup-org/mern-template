@@ -26,6 +26,7 @@ const HomePage = () => {
         body: JSON.stringify({
           name: userInfo.name,
           email: userInfo.email,
+          description: 'No profile description',
         }),
       });
   

@@ -51,7 +51,7 @@ setupDb().catch(console.error);
 
 app.post('/api/users/create', async (req, res) => {
   try {
-    const { name, email } = req.body;
+    const { name, email, description } = req.body;
     const client = await MongoClient.connect(url);
     const db = client.db(dbName);
     const users = db.collection('users');
@@ -62,7 +62,12 @@ app.post('/api/users/create', async (req, res) => {
       return res.status(409).json({ message: 'User already exists' });
     }
 
-    const result = await users.insertOne({ name, email, time: new Date() });
+    const result = await users.insertOne({ 
+      name, 
+      email, 
+      description: description || 'No profile description', 
+      time: new Date() 
+    });
     console.log(`New user created with ID: ${result.insertedId}`);
     await client.close();
     res.status(201).json({ message: 'User created', id: result.insertedId });
