@@ -132,8 +132,7 @@ const HomePage = () => {
 			</footer>
 
 			<Profile />
-			<LoginButton />
-			<LogoutButton />
+
 			<FileUpload />
 		</div>
 	);
