@@ -1,0 +1,40 @@
+name: FAST Workflow
+on: [push, pull_request]
+
+jobs:
+  build: 
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Check out repo code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js 
+        uses: actions/setup-node@v2
+
+      - name: Install dependencies 
+        run: npm install
+
+      - name: Build application
+        run: npm run build
+      
+      - name: Install doctl
+        uses: digitalocean/action-doctl@v2
+        with:
+          token: ${{ secrets.DO_ACCESS_TOKEN }}
+
+      - name: Deploy to DigitalOcean App Platform
+        run: |
+          doctl apps create --spec .do/app.yaml
+
+
+  test:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps: 
+      # - name: Run tests 
+      #   run: npm test
+
+
+  
