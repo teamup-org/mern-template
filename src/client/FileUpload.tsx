@@ -5,6 +5,9 @@ const FileUpload: React.FC = () => {
   const [file, setFile] = useState<File | null>(null);
   const [filename, setFilename] = useState('Choose File');
   const [uploadedFile, setUploadedFile] = useState<string>('');
+  const [wordCount, setWordCount] = useState<number | null>(null);
+  const [wordCount3char, setWordCount3char] = useState<number | null>(null);
+
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
@@ -41,6 +44,28 @@ const FileUpload: React.FC = () => {
     }
   };
 
+  const fetchWordCount = async () => {
+    if (!uploadedFile) return;
+
+    try {
+      const wordCountRes = await axios.get(`/count-words?filePath=${uploadedFile}`);
+      setWordCount(wordCountRes.data.wordCount);
+    } catch (err) {
+      console.error('Failed to fetch word count:', err);
+    }
+  };
+
+  const fetchWordCount3char = async () => {
+    if (!uploadedFile) return;
+
+    try {
+      const wordCount3charRes = await axios.get(`/count-words-3char?filePath=${uploadedFile}`);
+      setWordCount3char(wordCount3charRes.data.wordCount);
+    } catch (err) {
+      console.error('Failed to fetch word count (words > 3 characters):', err);
+    }
+  };
+
   return (
     <div>
       <form onSubmit={onSubmit}>
@@ -53,6 +78,10 @@ const FileUpload: React.FC = () => {
       {uploadedFile ? (
         <div>
           <h3>{uploadedFile}</h3>
+          <button onClick={fetchWordCount}>Fetch Word Count</button>
+          {wordCount !== null && <p>Total Words: {wordCount}</p>}
+          <button onClick={fetchWordCount3char}>Fetch Words more than 3 Characters</button>
+          {wordCount3char !== null && <p>Words more than 3 characters: {wordCount3char}</p>}
         </div>
       ) : (
         <div>

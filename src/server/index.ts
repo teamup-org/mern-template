@@ -5,6 +5,7 @@ import upload from './upload';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+import { countWordsInPdf, countWordsInPdf3char } from './report';
 
 // upload file routing
 app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
@@ -25,6 +26,30 @@ app.post('/upload', (req, res) => {
     }
   });
 });
+
+
+// Endpoint to count total words in a PDF
+app.get('/count-words', async (req, res) => {
+  const filePath = req.query.filePath as string; // Assuming filePath is passed as a query parameter
+  try {
+    const wordCount = await countWordsInPdf(filePath);
+    res.json({ wordCount });
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to count words in PDF' });
+  }
+});
+
+// Endpoint to count words longer than 3 characters in a PDF
+app.get('/count-words-3char', async (req, res) => {
+  const filePath = req.query.filePath as string; // Assuming filePath is passed as a query parameter
+  try {
+    const wordCount = await countWordsInPdf3char(filePath);
+    res.json({ wordCount });
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to count words longer than 3 characters in PDF' });
+  }
+});
+
 
 // Serve static files from the 'dist' directory
 app.use(express.static(path.join(__dirname, '..')));
