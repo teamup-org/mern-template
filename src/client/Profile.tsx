@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, Navigate } from "react-router-dom";
 import { useAuth0 } from '@auth0/auth0-react';
 import Header from './Header';
@@ -20,7 +20,7 @@ const Profile = () => {
   const handleSaveDescription = async () => {
     console.log('handleSaveDescription called');
     try {
-      if (user) {
+      if (isAuthenticated && user) {
         const response = await fetch('http://localhost:3000/api/profiledescription', {
           method: 'PUT',
           headers: {
@@ -51,6 +51,34 @@ const Profile = () => {
   const handleDescriptionChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setProfileDescription(event.target.value);
   };
+
+  useEffect(() => {
+    const fetchProfileDescription = async () => {
+      try {
+        if (isAuthenticated && user) {
+          const response = await fetch(`http://localhost:3000/api/profiledescription?email=${user.email}`, {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          });
+  
+          if (response.ok) {
+            const { description } = await response.json();
+            setProfileDescription(description);
+          } else {
+            console.error('Error fetching profile description:', await response.json());
+          }
+        } else {
+          console.error('User object is undefined');
+        }
+      } catch (error) {
+        console.error('Error fetching profile description:', error);
+      }
+    };
+  
+    fetchProfileDescription();
+  }, [isAuthenticated, user]);  
 
   return (
     isAuthenticated &&
