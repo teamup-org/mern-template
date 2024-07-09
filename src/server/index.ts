@@ -99,6 +99,57 @@ app.put('/api/users/update', async (req, res) => {
   }
 });
 
+// Update user profile description
+app.put('/api/profiledescription', async (req, res) => {
+  try {
+    const { email, profileDescription } = req.body;
+
+    const client = await MongoClient.connect(url);
+    const db = client.db(dbName);
+    const users = db.collection('users');
+
+    const result = await users.updateOne(
+      { email },
+      { $set: { description: profileDescription } }
+    );
+
+    if (result.modifiedCount === 0) {
+      await client.close();
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    console.log('Profile description updated successfully');
+    await client.close();
+    res.json({ message: 'Profile description updated successfully' });
+  } catch (error) {
+    console.error('Error updating profile description:', error);
+    res.status(500).json({ error: 'Error updating profile description' });
+  }
+});
+
+app.get('/api/profiledescription', async (req, res) => {
+  try {
+    const { email } = req.query;
+
+    const client = await MongoClient.connect(url);
+    const db = client.db(dbName);
+    const users = db.collection('users');
+
+    const user = await users.findOne({ email });
+
+    if (!user) {
+      await client.close();
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    await client.close();
+    res.json({ description: user.description });
+  } catch (error) {
+    console.error('Error fetching profile description:', error);
+    res.status(500).json({ error: 'Error fetching profile description' });
+  }
+});
+
 // Serve static files from the 'dist' directory
 app.use(express.static(path.join(__dirname, '..')));
 

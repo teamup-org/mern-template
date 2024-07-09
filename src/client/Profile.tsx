@@ -17,11 +17,31 @@ const Profile = () => {
     setIsEditingDescription(true);
   };
 
-  const handleSaveDescription = () => {
-    // add logic to save updated profile description to backend here
-    console.log('Saving profile description:', profileDescription);
-    setIsEditingDescription(false);
-  };
+  const handleSaveDescription = async () => {
+    console.log('handleSaveDescription called');
+    try {
+      if (user) {
+        const response = await fetch('http://localhost:3000/api/profiledescription', {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ email: user.email, profileDescription }),
+        });
+  
+        if (response.ok) {
+          console.log('Profile description updated successfully');
+          setIsEditingDescription(false);
+        } else {
+          console.error('Error updating profile description');
+        }
+      } else {
+        console.error('User is undefined');
+      }
+    } catch (error) {
+      console.error('Error updating profile description:', error);
+    }
+  };   
 
   const handleCancelEdit = () => {
     setIsEditingDescription(false);
