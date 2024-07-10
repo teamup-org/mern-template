@@ -32,6 +32,20 @@ const Profile = () => {
         if (response.ok) {
           console.log('Profile description updated successfully');
           setIsEditingDescription(false);
+
+          // Update the user's time
+        await fetch('http://localhost:3000/api/users/update', {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            email: user.email,
+            time: new Date(),
+          }),
+        });
+
+        console.log('User time updated');
         } else {
           console.error('Error updating profile description');
         }
