@@ -10,7 +10,7 @@
     "test:node": "jest --detectOpenHandles --config jest.config.node.js",
     "test": "npm run test:react && npm run test:node",
     "mongo:setup": "node mongo-setup.js",
-    "mongo:test": "node mongo-test.js" 
+    "mongo:test": "node mongo-test.js"
   },
   "devDependencies": {
     "@babel/core": "^7.24.5",
@@ -33,10 +33,10 @@
     "file-loader": "^6.2.0",
     "fork-ts-checker-webpack-plugin": "^9.0.2",
     "html-webpack-plugin": "^5.6.0",
-    "image-webpack-loader": "^8.1.0",
+    "image-webpack-loader": "^4.2.0",
     "imagemin": "^9.0.0",
-    "imagemin-mozjpeg": "^10.0.0",
-    "imagemin-pngquant": "^10.0.0",
+    "imagemin-mozjpeg": "^6.0.0",
+    "imagemin-pngquant": "^5.0.1",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
     "react-refresh": "^0.14.2",
@@ -52,10 +52,13 @@
   "dependencies": {
     "@auth0/auth0-react": "^2.2.4",
     "express": "^4.19.2",
+    "express-fileupload": "^1.5.0",
     "mongodb": "^6.7.0",
     "mongoose": "^8.3.3",
+    "pdf-parse": "^1.1.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-router-dom": "^6.23.0"
+    "react-router-dom": "^6.23.0",
+    "uuid": "^10.0.0"
   }
 }
