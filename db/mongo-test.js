@@ -20,6 +20,11 @@ async function testMongoDB() {
 
     await collection.insertOne(newUser);
     console.log("Inserted new user");
+
+    const users = await collection.find({}).toArray();
+    console.log("Found the following users:");
+    console.log(users);
+    
   } catch (error) {
     console.error('Error during DB operation:', error);
   } finally {
