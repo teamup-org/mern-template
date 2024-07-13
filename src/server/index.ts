@@ -2,6 +2,8 @@ import express from 'express';
 import path from 'path';
 import { MongoClient } from 'mongodb';
 
+import userRoutes from './routes/user';
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -21,6 +23,11 @@ async function main() {
 }
 
 main().catch(console.error);
+
+app.use(express.json());
+
+// ROUTES
+app.use('/api/users', userRoutes);
 
 // Serve static files from the 'dist' directory
 app.use(express.static(path.join(__dirname, '..')));
