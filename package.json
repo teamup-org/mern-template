@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "clean": "rm -rf dist/*",
+    "clean": "rimraf dist",
     "build": "npm run clean && tsc && cross-env NODE_ENV=production webpack",
     "build:dev": "npm run clean && webpack --env environment=development",
     "build:watch": "npm run clean && webpack --env environment=development --watch",
@@ -8,9 +8,7 @@
     "start:dev": "concurrently \"webpack serve --hot\" \"npm run start\"",
     "test:react": "jest --detectOpenHandles --config jest.config.react.js",
     "test:node": "jest --detectOpenHandles --config jest.config.node.js",
-    "test": "npm run test:react && npm run test:node",
-    "mongo:setup": "node mongo-setup.js",
-    "mongo:test": "node mongo-test.js" 
+    "test": "npm run test:react && npm run test:node"
   },
   "devDependencies": {
     "@babel/core": "^7.24.5",
