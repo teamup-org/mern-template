@@ -22,7 +22,7 @@ jobs:
       - name: Install doctl
         uses: digitalocean/action-doctl@v2
         with:
-          token: dop_v1_174521df722aa55db1b44bf1881524745c30e19a200501f2137e50144c19fcac
+          token: dop_v1_d78aa4efe0509ec04328ef490987345715de9789a61b655aea5e71aff54e463f
 
 
       
