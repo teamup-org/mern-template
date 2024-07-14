@@ -1,0 +1,12 @@
+name: fastapp2
+
+services:
+  - name: deployedtemplate
+    github:
+      repo: teamup-org/mern-template
+      branch: cicd
+      deploy_on_push: true
+    environment_slug: node-js
+    http_port: 3000
+    build_command: npm install && npm run build
+    run_command: node .dist/server/index.js
