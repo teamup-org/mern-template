@@ -7,7 +7,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 const url = 'mongodb://localhost:27017'; 
-// const url = 'mongodb://root:example@localhost:27017'; // when not using Docker for MongoDB
+// const url = 'mongodb://root:example@localhost:27017'; // use this link when using Docker for MongoDB
 const dbName = 'TeamUp';
 const client = new MongoClient(url);
 
