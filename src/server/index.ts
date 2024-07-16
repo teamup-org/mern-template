@@ -3,6 +3,8 @@ import path from 'path';
 
 import upload from './upload';
 
+import userRoutes from './routes/user';
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 import { countWordsInPdf, countWordsInPdf3char, countWordsInImg } from './report';
@@ -60,6 +62,11 @@ app.get('/count-words-img', async (req, res) => {
   }
 });
 
+
+app.use(express.json());
+
+// ROUTES
+app.use('/api/users', userRoutes);
 
 // Serve static files from the 'dist' directory
 app.use(express.static(path.join(__dirname, '..')));
