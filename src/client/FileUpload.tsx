@@ -30,12 +30,12 @@ const FileUpload: React.FC = () => {
         }
       });
 
-      const { file: uploadedFilePath } = res.data;
+      const { file: uploadedFilePath, document } = res.data;
 
       setUploadedFile(uploadedFilePath);
-      setWordCount(null);
-      setWordCount3char(null);
-      setWordCount4char(null);
+      setWordCount(document.wordCount);
+      setWordCount3char(document.wordCount3Plus);
+      setWordCount4char(document.wordCount4Plus);
 
     } catch (err) {
       if (axios.isAxiosError(err) && err.response) {
@@ -46,58 +46,20 @@ const FileUpload: React.FC = () => {
     }
   };
 
-  const fetchWordCount = async (minLength: number) => {
-    if (!uploadedFile) return;
-
-    const fileExtension = uploadedFile.split('.').pop()?.toLowerCase();
-    let endpoint = '';
-
-    if (fileExtension === 'pdf') {
-      endpoint = '/count-words-pdf';
-    } else if (['jpeg', 'jpg', 'png'].includes(fileExtension!)) {
-      endpoint = '/count-words-img';
-    } else if (fileExtension === 'docx') {
-      endpoint = '/count-words-docx';
-    } else {
-      console.error('Unsupported file type');
-      return;
-    }
-
-    try {
-      const res = await axios.get(endpoint, {
-        params: { filePath: uploadedFile, minLength }
-      });
-
-      if (minLength === 1) {
-        setWordCount(res.data.wordCount);
-      } else if (minLength === 3) {
-        setWordCount3char(res.data.wordCount);
-      } else if (minLength === 4) {
-        setWordCount4char(res.data.wordCount);
-      }
-    } catch (err) {
-      console.error(`Failed to fetch word count (words >= ${minLength} characters):`, err);
-    }
-  };
-
   return (
     <div>
       <form onSubmit={onSubmit}>
         <div>
           <input type="file" onChange={onChange} />
-          {/* <label htmlFor="file">{filename}</label> */}
         </div>
         <input type="submit" value="Upload" />
       </form>
       {uploadedFile ? (
         <div>
           <h3>{uploadedFile}</h3>
-          <button onClick={() => fetchWordCount(1)}>Fetch Word Count</button>
-          {wordCount !== null && <p>Total Words: {wordCount}</p>}
-          <button onClick={() => fetchWordCount(3)}>Fetch Words more than 3 Characters</button>
-          {wordCount3char !== null && <p>Words more than 3 characters: {wordCount3char}</p>}
-          <button onClick={() => fetchWordCount(4)}>Fetch Words more than 4 Characters</button>
-          {wordCount4char !== null && <p>Words more than 4 characters: {wordCount4char}</p>}
+          <p>Total Words: {wordCount}</p>
+          <p>Words more than 3 characters: {wordCount3char}</p>
+          <p>Words more than 4 characters: {wordCount4char}</p>
         </div>
       ) : (
         <div>
