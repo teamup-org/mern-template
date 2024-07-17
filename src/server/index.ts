@@ -4,9 +4,9 @@ import path from "path";
 import upload from "./upload";
 
 import {
-	countWordsInImg,
-	countWordsInPdf,
-	countWordsInPdf3char,
+  countWordsInDocx,
+  countWordsInImg,
+  countWordsInPdf
 } from "./report";
 import userRoutes from "./routes/user";
 
@@ -47,37 +47,48 @@ app.get("/api", (req, res) => {
 });
 
 // Endpoint to count total words in a PDF
-app.get("/count-words", async (req, res) => {
-	const filePath = req.query.filePath as string; // Assuming filePath is passed as a query parameter
-	try {
-		const wordCount = await countWordsInPdf(filePath);
-		res.json({ wordCount });
-	} catch (error) {
-		res.status(500).json({ error: "Failed to count words in PDF" });
-	}
+app.get('/count-words-pdf', async (req, res) => {
+  const filePath = req.query.filePath as string; // Assuming filePath is passed as a query parameter
+  const minLength = parseInt(req.query.minLength as string, 10) || 1;
+  try {
+    const wordCount = await countWordsInPdf(filePath, minLength);
+    res.json({ wordCount });
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to count words in PDF' });
+  }
 });
 
-// Endpoint to count words longer than 3 characters in a PDF
-app.get("/count-words-3char", async (req, res) => {
-	const filePath = req.query.filePath as string; // Assuming filePath is passed as a query parameter
-	try {
-		const wordCount = await countWordsInPdf3char(filePath);
-		res.json({ wordCount });
-	} catch (error) {
-		res
-			.status(500)
-			.json({ error: "Failed to count words longer than 3 characters in PDF" });
-	}
+// Endpoint to count words in an image
+app.get('/count-words-img', async (req, res) => {
+  const filePath = req.query.filePath as string;
+  const minLength = parseInt(req.query.minLength as string, 10) || 1;
+  try {
+    const wordCount = await countWordsInImg(filePath, minLength);
+    res.json({ wordCount });
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to count words in IMG' });
+  }
 });
 
-app.get("/count-words-img", async (req, res) => {
-	const filePath = req.query.filePath as string;
-	try {
-		const wordCount = await countWordsInImg(filePath);
-		res.json({ wordCount });
-	} catch (error) {
-		res.status(500).json({ error: "Failed to count words in IMG" });
-	}
+// Endpoint to count words in a DOCX file
+app.get('/count-words-docx', async (req, res) => {
+  const filePath = req.query.filePath as string;
+  const minLength = parseInt(req.query.minLength as string, 10) || 1;
+  try {
+    const wordCount = await countWordsInDocx(filePath, minLength);
+    res.json({ wordCount });
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to count words in DOCX file' });
+  }
+});
+
+
+// Serve static files from the 'dist' directory
+app.use(express.static(path.join(__dirname, '..')));
+
+// Example of a simple API endpoint (order matters)
+app.get('/api', (req, res) => {
+  res.json({ message: 'Hello, world!' });
 });
 
 // Fallback for SPA routing
