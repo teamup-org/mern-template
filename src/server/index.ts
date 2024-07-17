@@ -7,7 +7,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 const url = 'mongodb://localhost:27017'; 
-// const url = 'mongodb://root:example@localhost:27017'; // when not using Docker for MongoDB
+// const url = 'mongodb://root:example@localhost:27017'; // use this link when using Docker for MongoDB
 const dbName = 'TeamUp';
 const client = new MongoClient(url);
 
@@ -51,7 +51,7 @@ setupDb().catch(console.error);
 
 app.post('/api/users/create', async (req, res) => {
   try {
-    const { name, email } = req.body;
+    const { name, email, description } = req.body;
     const client = await MongoClient.connect(url);
     const db = client.db(dbName);
     const users = db.collection('users');
@@ -62,7 +62,12 @@ app.post('/api/users/create', async (req, res) => {
       return res.status(409).json({ message: 'User already exists' });
     }
 
-    const result = await users.insertOne({ name, email, time: new Date() });
+    const result = await users.insertOne({ 
+      name, 
+      email, 
+      description: description || 'No profile description', 
+      time: new Date() 
+    });
     console.log(`New user created with ID: ${result.insertedId}`);
     await client.close();
     res.status(201).json({ message: 'User created', id: result.insertedId });
@@ -91,6 +96,57 @@ app.put('/api/users/update', async (req, res) => {
   } catch (err) {
     console.error('Error updating user:', err);
     res.status(500).json({ message: 'Error updating user' });
+  }
+});
+
+// Update user profile description
+app.put('/api/profiledescription', async (req, res) => {
+  try {
+    const { email, profileDescription } = req.body;
+
+    const client = await MongoClient.connect(url);
+    const db = client.db(dbName);
+    const users = db.collection('users');
+
+    const result = await users.updateOne(
+      { email },
+      { $set: { description: profileDescription } }
+    );
+
+    if (result.modifiedCount === 0) {
+      await client.close();
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    console.log('Profile description updated successfully');
+    await client.close();
+    res.json({ message: 'Profile description updated successfully' });
+  } catch (error) {
+    console.error('Error updating profile description:', error);
+    res.status(500).json({ error: 'Error updating profile description' });
+  }
+});
+
+app.get('/api/profiledescription', async (req, res) => {
+  try {
+    const { email } = req.query;
+
+    const client = await MongoClient.connect(url);
+    const db = client.db(dbName);
+    const users = db.collection('users');
+
+    const user = await users.findOne({ email });
+
+    if (!user) {
+      await client.close();
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    await client.close();
+    res.json({ description: user.description });
+  } catch (error) {
+    console.error('Error fetching profile description:', error);
+    res.status(500).json({ error: 'Error fetching profile description' });
   }
 });
 
