@@ -52,7 +52,7 @@
   "dependencies": {
     "@auth0/auth0-react": "^2.2.4",
     "express": "^4.19.2",
-    "express-fileupload": "^1.5.0",
+    "express-fileupload": "^1.5.1",
     "mongodb": "^6.7.0",
     "mongoose": "^8.3.3",
     "pdf-parse": "^1.1.1",
