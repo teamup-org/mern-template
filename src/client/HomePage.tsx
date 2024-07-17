@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import Profile from "./Profile";
+import Header from "./Header";
 import './HomePage.css';
 
 import sample1 from './images/sample1.png';
@@ -9,7 +10,72 @@ import sample2 from './images/sample2.jpg';
 import logo from './images/teamup-logo.png';
 
 const HomePage = () => {
-  const { loginWithRedirect, logout, isAuthenticated } = useAuth0();
+  const { loginWithRedirect, logout, isAuthenticated, getAccessTokenSilently, user } = useAuth0();
+
+  const createUser = async (userInfo: any) => {
+    try {
+      const accessToken = await getAccessTokenSilently();
+      console.log('Access Token:', accessToken);
+  
+      const response = await fetch('http://localhost:3000/api/users/create', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${accessToken}`,
+        },
+        body: JSON.stringify({
+          name: userInfo.name,
+          email: userInfo.email,
+          description: 'No profile description',
+        }),
+      });
+  
+      if (response.ok) {
+        const data = await response.json();
+        console.log('User created:', data);
+      } else if (response.status === 409) {
+        await updateUserTime(userInfo.email);
+      } else {
+        console.error('Error creating user:', response.status);
+      }
+    } catch (error) {
+      console.error('Error creating user:', error);
+    }
+  };
+  
+  const updateUserTime = async (email: string) => {
+    try {
+      const accessToken = await getAccessTokenSilently();
+      const response = await fetch('http://localhost:3000/api/users/update', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${accessToken}`,
+        },
+        body: JSON.stringify({
+          email,
+          time: new Date(),
+        }),
+      });
+  
+      if (response.ok) {
+        console.log('User time updated');
+      } else if (response.status === 404) {
+        console.error('User not found');
+      } else {
+        console.error('Error updating user:', response.status);
+      }
+    } catch (error) {
+      console.error('Error updating user:', error);
+    }
+  };
+  
+
+  useEffect(() => {
+    if (isAuthenticated && user) {
+      createUser(user);
+    }
+  }, [isAuthenticated, user, getAccessTokenSilently]);
 
   return (
     <div className="home-page">
@@ -21,6 +87,9 @@ const HomePage = () => {
           <ul>
             <li><Link to="/">About Us</Link></li>
             <li><Link to="/about">About this product</Link></li>
+            {isAuthenticated ? (
+              <Header/>
+            ) : (null)}
             <li>
               {isAuthenticated ? (
                 <button
@@ -96,7 +165,7 @@ const HomePage = () => {
         <button className="button">Learn More</button>
       </footer>
       
-      <Profile />
+      {/* <Profile /> */}
     </div>
   );
 };
