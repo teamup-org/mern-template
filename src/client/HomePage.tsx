@@ -16,7 +16,6 @@ const HomePage = () => {
     try {
       const accessToken = await getAccessTokenSilently();
       console.log('Access Token:', accessToken);
-  
       const response = await fetch('http://localhost:3000/api/users/create', {
         method: 'POST',
         headers: {
