@@ -31,16 +31,20 @@ const upload = multer({
 function checkFileType(
 	file: Express.Multer.File,
 	cb: multer.FileFilterCallback
-) {
-	const filetypes = /jpeg|jpg|png|gif|pdf/;
+  ) {
+	// Include docx in the allowed file types
+	const filetypes = /jpeg|jpg|png|gif|pdf|docx/;
 	const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
-	const mimetype = filetypes.test(file.mimetype);
-
+  
+	// Check for multiple possible MIME types
+	const mimetype = filetypes.test(file.mimetype) ||
+	  file.mimetype === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document';
+  
 	if (mimetype && extname) {
-		return cb(null, true);
+	  return cb(null, true);
 	} else {
-		cb(new Error("Error: Unsupported file upload type"));
+	  cb(new Error('Error: Unsupported file upload type'));
 	}
-}
+  }
 
 export default upload;
