@@ -9,9 +9,9 @@ const Profile = () => {
   const [isEditingDescription, setIsEditingDescription] = useState(false);
   const [profileDescription, setProfileDescription] = useState('');
 
-  if (isLoading) {
-    return <Navigate to="/" />;
-  }
+  // if (isLoading) {
+  //   return <Navigate to="/" />;
+  // }
 
   const handleEditDescription = () => {
     setIsEditingDescription(true);

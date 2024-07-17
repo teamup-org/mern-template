@@ -1,0 +1,38 @@
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 80px 20px 20px; /* Increase the top padding to make space for the header */
+  }
+  
+  .assignment-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .assignment-item {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .assignment-item h3 {
+    margin-top: 0;
+  }
+  
+  .assignment-item p {
+    margin-bottom: 0;
+  }
+  
+  .assignment-item button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
