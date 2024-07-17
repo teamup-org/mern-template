@@ -1,0 +1,107 @@
+
+
+.divide {
+    display: flex;
+    flex-direction: row;
+    padding-top: 130px;
+    height: 100%;
+}
+
+.contact-footer {
+    padding: 20px;
+    background: #4F9DAA;
+    color: #152231;
+    display: flex;
+    align-content: flex-start;
+    font-weight: bold;
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+}
+
+main {
+    background: #E4EADD;
+    height: 100%;
+    width: 100%;
+    left: 0px;
+    top: 0px;
+    overflow: hidden;
+}
+
+input[type=text] {
+    background-color: #D4E0BD;
+    border: none;
+    border-radius: 5px;
+    color: #94A18F;
+}
+
+input[type=email] {
+    background-color: #D4E0BD;
+    border: none;
+    border-radius: 5px;
+    color: #94A18F;
+}
+
+.name-container1 {
+    display: flex;
+    flex-direction: column;
+    align-content: flex-start;
+    margin-right: 10px;
+    width: 50%;
+}
+
+.name-container2 {
+    display: flex;
+    flex-direction: column;
+    align-content: flex-start;
+    margin-left: 10px;
+    width: 50%;
+}
+
+.left-half {
+    padding-right: 30px;
+    padding-left: 30px;
+    display: flex;
+    flex-direction: column;
+    align-content: flex-start;
+    text-align: left;
+    color: #152231;
+    margin-right: 20px;
+    width: 50%;
+}
+
+.names {
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+}
+
+.email-container {
+    display: flex;
+    flex-direction: column;
+    align-content: flex-start;
+    margin-top: 10px;
+}
+
+.email-container textarea {
+    background-color: #D4E0BD;
+    border: none;
+    border-radius: 5px;
+    color: #94A18F;   
+}
+
+.email-container button {
+    background-color: #4F9DAA;
+    color: #FFFFFF;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-bottom: 50px;
+    cursor: pointer;
+}
+
+.divide img {
+    width: 50%;
+    height: auto;
+}
