@@ -1,7 +1,7 @@
 // addData.js
 
 const connectDB = require("./src/db"); // Import the database connection function
-const Document = require("./src/models/Document"); // Import the Document model
+const Document = require("./src/models/document"); // Import the Document model
 const mongoose = require("mongoose");
 const addData = async () => {
 	try {
@@ -11,7 +11,7 @@ const addData = async () => {
 		// Example document data
 		const exampleDocument = new Document({
 			title: "123",
-			content: "abc",
+			content: ["123", "123", "234"],
 			wordCount: 30,
 			wordCount3Plus: 13,
 			wordCount4Plus: 14,
