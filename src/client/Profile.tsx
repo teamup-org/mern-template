@@ -59,7 +59,6 @@ const Profile = () => {
 
   const handleCancelEdit = () => {
     setIsEditingDescription(false);
-    setProfileDescription('');
   };
 
   const handleDescriptionChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
