@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import Profile from "./Profile";
@@ -16,17 +16,20 @@ const HomePage = () => {
     try {
       const accessToken = await getAccessTokenSilently();
       console.log('Access Token:', accessToken);
+
+      const userInformation = {
+        name: userInfo.name,
+        email: userInfo.email,
+        description: "No description",
+      };
+
       const response = await fetch('http://localhost:3000/api/users/create', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${accessToken}`,
         },
-        body: JSON.stringify({
-          name: userInfo.name,
-          email: userInfo.email,
-          description: 'No profile description',
-        }),
+        body: JSON.stringify(userInformation),
       });
   
       if (response.ok) {
