@@ -30,10 +30,20 @@ const ProfileDescription = () => {
                     })
                 }
             );
+
+            // For debugging
+            console.log('Request body to backend AI: \n', JSON.stringify({
+                message: reqBody,
+                temperature: temperature,
+                maxWords: maxWords,
+                tone: tone
+            }));
+
             const data = await response.json();
             setIsLoading(false);
             setMessage(data.message);
-            console.log(data)
+
+            console.log("Response from backend AI:\n", data)
         } catch (error) {
             console.error('Error fetching data:', error);
             // Display error on UI
@@ -72,6 +82,12 @@ const ProfileDescription = () => {
             setTemperature(0.2);
             setTone('technical');
             setMaxWords(20);
+
+            console.log("Configure/reset default AI variables: \n", JSON.stringify({
+                temperature: temperature,
+                maxWords: maxWords,
+                tone: tone
+            }))
         }
     }
     , [advanceSettingDisplay])
