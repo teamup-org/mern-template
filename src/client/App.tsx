@@ -6,6 +6,7 @@ import ProfileGallery from './ProfileGallery';
 import Profile from './Profile';
 import NotFoundPage from './NotFoundPage';
 import AIProfile from './AIProfile';
+import RoleSelection from './RoleSelection';
 
 const App: React.FC = () => {
   return (
@@ -17,6 +18,7 @@ const App: React.FC = () => {
           <Route path="/profile-gallery" element={<ProfileGallery />} />
           <Route path="/ai-profile" element={<AIProfile />} />
           <Route path="*" element={<NotFoundPage />} />
+          <Route path="/select-role" element={<RoleSelection />} />
         </Routes>
       </div>
     </Router>
