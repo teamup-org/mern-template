@@ -66,6 +66,7 @@ app.post('/api/users/create', async (req, res) => {
       name, 
       email, 
       description: description || 'No profile description', 
+      role: 'none',
       time: new Date() 
     });
     console.log(`New user created with ID: ${result.insertedId}`);
@@ -147,6 +148,35 @@ app.get('/api/profiledescription', async (req, res) => {
   } catch (error) {
     console.error('Error fetching profile description:', error);
     res.status(500).json({ error: 'Error fetching profile description' });
+  }
+});
+
+app.put('/api/users/update/role', async (req, res) => {
+  const { email, role } = req.body;
+
+  try {
+    const client = await MongoClient.connect(url);
+    const db = client.db(dbName);
+    const users = db.collection('users');
+
+    const updateResult = await users.updateOne({ email }, { $set: { role } });
+
+    if (updateResult.matchedCount === 0) {
+      await client.close();
+      return res.status(404).json({ message: 'User not found.' });
+    }
+
+    if (updateResult.modifiedCount === 0) {
+      await client.close();
+      return res.status(304).json({ message: 'No changes made.' });
+    }
+
+    console.log('Role updated for user: ${email}');
+    await client.close();
+    res.status(200).json({ message: 'Role updated successfully.' });
+  } catch (err) {
+    console.error('Error updating user role:', err);
+    res.status(500).json({ message: 'Failed to update user role.' });
   }
 });
 
