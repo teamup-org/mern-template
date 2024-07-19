@@ -67,6 +67,10 @@ app.post('/api/users/create', async (req, res) => {
       email, 
       description: description || 'No profile description', 
       role: 'none',
+      teacherID: null,
+      parentIDs: [null],
+      documentIDs: [null],
+      studentIDs: [null],
       time: new Date() 
     });
     console.log(`New user created with ID: ${result.insertedId}`);
