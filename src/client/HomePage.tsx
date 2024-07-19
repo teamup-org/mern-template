@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
+import { Navigate } from 'react-router-dom';
 import Profile from "./Profile";
 import Header from "./Header";
 import './HomePage.css';
@@ -11,6 +12,7 @@ import logo from './images/teamup-logo.png';
 
 const HomePage = () => {
   const { loginWithRedirect, logout, isAuthenticated, getAccessTokenSilently, user } = useAuth0();
+  const [redirectToSelectRole, setRedirectToSelectRole] = useState(false);
 
   const createUser = async (userInfo: any) => {
     try {
@@ -21,6 +23,7 @@ const HomePage = () => {
         name: userInfo.name,
         email: userInfo.email,
         description: "No description",
+        role: "none",
       };
 
       const response = await fetch('http://localhost:3000/api/users/create', {
@@ -35,6 +38,7 @@ const HomePage = () => {
       if (response.ok) {
         const data = await response.json();
         console.log('User created:', data);
+        setRedirectToSelectRole(true);
       } else if (response.status === 409) {
         await updateUserTime(userInfo.email);
       } else {
@@ -72,12 +76,15 @@ const HomePage = () => {
     }
   };
   
-
   useEffect(() => {
     if (isAuthenticated && user) {
       createUser(user);
     }
   }, [isAuthenticated, user, getAccessTokenSilently]);
+
+  if (redirectToSelectRole) {
+    return <Navigate to="/select-role" replace={true} />;
+  }
 
   return (
     <div className="home-page">
