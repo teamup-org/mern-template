@@ -1,50 +1,76 @@
-import fs from "fs";
+import { Request, Response } from "express";
 import multer from "multer";
-import path from "path";
+import Document from "../models/doc";
+import {
+	contentInDocx,
+	contentInImg,
+	contentInPdf,
+	countWordsInDocx,
+	countWordsInImg,
+	countWordsInPdf,
+} from "./report"; // Adjust the import based on your actual file structure
 
-const uploadFolder = "./uploads/";
+const upload = multer({ dest: "uploads/" });
 
-const storage = multer.diskStorage({
-	destination: function (req, file, cb) {
-		fs.mkdir(uploadFolder, { recursive: true }, function (err) {
-			if (err) {
-				console.error("Error creating upload folder:", err);
+export const uploadFile = async (
+	req: Request,
+	res: Response
+): Promise<void> => {
+	upload.single("file")(req, res, async (err: any) => {
+		if (err) {
+			res.status(400).json({ message: err.message });
+			return;
+		}
+		if (req.file === undefined) {
+			res.status(400).json({ message: "No file selected!" });
+			return;
+		}
+
+		const filePath = `uploads/${req.file.filename}`;
+		const fileExtension = req.file.filename.split(".").pop()?.toLowerCase();
+
+		let wordCount = 0;
+		let wordCount3Plus = 0;
+		let wordCount4Plus = 0;
+		let content: string[] = [""];
+
+		try {
+			if (fileExtension === "pdf") {
+				content = await contentInPdf(filePath, 1);
+				wordCount = await countWordsInPdf(filePath, 1);
+				wordCount3Plus = await countWordsInPdf(filePath, 3);
+				wordCount4Plus = await countWordsInPdf(filePath, 4);
+			} else if (["jpeg", "jpg", "png"].includes(fileExtension!)) {
+				content = await contentInImg(filePath, 1);
+				wordCount = await countWordsInImg(filePath, 1);
+				wordCount3Plus = await countWordsInImg(filePath, 3);
+				wordCount4Plus = await countWordsInImg(filePath, 4);
+			} else if (fileExtension === "docx") {
+				content = await contentInDocx(filePath, 1);
+				wordCount = await countWordsInDocx(filePath, 1);
+				wordCount3Plus = await countWordsInDocx(filePath, 3);
+				wordCount4Plus = await countWordsInDocx(filePath, 4);
+			} else {
+				throw new Error("Unsupported file type");
 			}
-			cb(null, uploadFolder);
-		});
-	},
-	filename: function (req, file, cb) {
-		const originalName = path.parse(file.originalname).name; // Get the name without the extension
-		const extension = path.extname(file.originalname);
-		cb(null, `${originalName}-${Date.now()}${extension}`);
-	},
-});
 
-const upload = multer({
-	storage: storage,
-	limits: { fileSize: 100000000 }, // 100MB limit
-	fileFilter: function (req, file, cb) {
-		checkFileType(file, cb);
-	},
-}).single("myFile"); // 'myFile' is the name attribute in the form
+			const document = new Document({
+				title: req.file.filename,
+				content,
+				wordCount,
+				wordCount3Plus,
+				wordCount4Plus,
+			});
 
-function checkFileType(
-	file: Express.Multer.File,
-	cb: multer.FileFilterCallback
-  ) {
-	// Include docx in the allowed file types
-	const filetypes = /jpeg|jpg|png|gif|pdf|docx/;
-	const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
-  
-	// Check for multiple possible MIME types
-	const mimetype = filetypes.test(file.mimetype) ||
-	  file.mimetype === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document';
-  
-	if (mimetype && extname) {
-	  return cb(null, true);
-	} else {
-	  cb(new Error('Error: Unsupported file upload type'));
-	}
-  }
+			await document.save();
 
-export default upload;
+			res.status(200).json({
+				message: "File uploaded and processed successfully!",
+				file: filePath,
+				document,
+			});
+		} catch (err) {
+			res.status(500).json({ message: "Failed to process file" });
+		}
+	});
+};
