@@ -24,11 +24,15 @@ const FileUpload: React.FC = () => {
 		formData.append("myFile", file, file.name);
 
 		try {
-			const res = await axios.post("/api/teacher/upload", formData, {
-				headers: {
-					"Content-Type": "multipart/form-data",
-				},
-			});
+			const res = await axios.post(
+				"http://localhost:3000/api/teacher/upload",
+				formData,
+				{
+					headers: {
+						"Content-Type": "multipart/form-data",
+					},
+				}
+			);
 
 			const { file: uploadedFilePath, document } = res.data;
 
