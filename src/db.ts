@@ -1,11 +1,8 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
-const connectDB = async () => {
+export const connectDB = async () => {
   try {
     await mongoose.connect('mongodb://localhost:27017/TeamUp', {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      useCreateIndex: true,
     });
     console.log('MongoDB connected');
   } catch (error) {
@@ -13,5 +10,6 @@ const connectDB = async () => {
     process.exit(1);
   }
 };
-
 module.exports = connectDB;
+
+export default connectDB;
