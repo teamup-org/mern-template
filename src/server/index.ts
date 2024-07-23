@@ -10,18 +10,13 @@ import teacherRoutes from "./routes/teacher";
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const bodyParser = require("body-parser");
+
 connectDB();
 
 // upload file routing
 
 app.use(express.json());
 
-app.use(
-	bodyParser.urlencoded({
-		extended: true,
-	})
-);
 // ROUTES
 app.use("/api/users", userRoutes);
 app.use("/api/teacher", teacherRoutes);
