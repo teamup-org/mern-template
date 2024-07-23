@@ -9,9 +9,11 @@
 		"test:react": "jest --detectOpenHandles --config jest.config.react.js",
 		"test:node": "jest --detectOpenHandles --config jest.config.node.js",
 		"test": "npm run test:react && npm run test:node",
+		"testfolder": "npm run build && node ./dist/test/testUser.js",
 		"mongo:setup": "node mongo-setup.js",
 		"mongo:test": "node mongo-test.js",
 		"mongo:setup-document": "node mongo-setup-document.js"
+		
 	},
 	"devDependencies": {
 		"@babel/core": "^7.24.5",

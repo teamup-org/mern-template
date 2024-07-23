@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import Document from "../models/doc";
+import Doc from "../models/doc";
 import {
 	contentInDocx,
 	contentInImg,
@@ -8,7 +8,6 @@ import {
 	countWordsInImg,
 	countWordsInPdf,
 } from "./report"; // Adjust the import based on your actual file structure
-
 export const uploadFile = async (
 	req: Request,
 	res: Response
@@ -45,7 +44,7 @@ export const uploadFile = async (
 			throw new Error("Unsupported file type");
 		}
 
-		const document = new Document({
+		const document = new Doc({
 			title: req.file.filename,
 			content,
 			wordCount,

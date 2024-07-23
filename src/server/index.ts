@@ -1,7 +1,7 @@
 import express from "express";
 import path from "path";
 
-import connectDB from "./db-connection";
+import connectDB from "../db";
 
 import { countWordsInDocx, countWordsInImg, countWordsInPdf } from "./report";
 import userRoutes from "./routes/user";
