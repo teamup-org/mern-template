@@ -1,31 +1,46 @@
-import mongoose, { Schema, Document } from 'mongoose';
+import mongoose, { Schema, model, Document } from 'mongoose';
 
-enum UserRole {
-    Student = 'student',
-    Teacher = 'teacher',
-    Parent = 'parent',
+enum Role {
+  Teacher = 'teacher',
+  Student = 'student',
+  Parent = 'parent',
+  None = 'none'
 }
 
 interface IUser extends Document {
-    userID: mongoose.Types.ObjectId;
-    name: string;
-    email: string;
-    role: UserRole;
-    teacherID?: mongoose.Types.ObjectId;
-    parentID?: mongoose.Types.ObjectId[];
-    documentIDs?: mongoose.Types.ObjectId[];
-    studentIDs?: mongoose.Types.ObjectId[];
+  userId: mongoose.Schema.Types.ObjectId;
+  firstName: string;
+  lastName: string;
+  email: string;
+  picture?: string;
+  role: Role;
+  students: mongoose.Schema.Types.ObjectId[];
+  books: mongoose.Schema.Types.ObjectId[];
+  assignments: mongoose.Schema.Types.ObjectId[];
+  grade?: number;
+  parents: mongoose.Schema.Types.ObjectId[];
+  teachers: mongoose.Schema.Types.ObjectId[];
+  children: mongoose.Schema.Types.ObjectId[];
 }
 
-const userSchema: Schema<IUser> = new Schema<IUser>({
-    userID: { type: mongoose.Schema.Types.ObjectId, auto: true },
-    name: { type: String, required: true },
-    email: { type: String, required: true, unique: true },
-    role: { type: String, enum: Object.values(UserRole), required: true },
-    teacherID: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: function() { return this.role === UserRole.Student; } },
-    parentID: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User', required: function() { return this.role === UserRole.Student; } }],
-    documentIDs: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Document', required: function() { return this.role === UserRole.Teacher; } }],
-    studentIDs: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User', required: function() { return this.role === UserRole.Parent; } }],
+const userSchema = new Schema<IUser>({
+  firstName: { type: String, required: true },
+  lastName: { type: String, required: true },
+  email: { type: String, required: true, unique: true },
+  picture: String,
+  role: { type: String, enum: Object.values(Role), required: true, default: Role.None },
+  // Teacher
+  students: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+  books: [{ type: Schema.Types.ObjectId, ref: 'Book' }],
+  assignments: [{ type: Schema.Types.ObjectId, ref: 'Assignment' }],
+  // Student
+  grade: Number,
+  parents: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+  teachers: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+  // Parent
+  children: [{ type: Schema.Types.ObjectId, ref: 'User' }]
 });
 
-export default mongoose.model<IUser>('User', userSchema);
+const User = model<IUser>('User', userSchema);
+export default User;
+export { User, Role };
