@@ -170,9 +170,26 @@ app.put('/api/users/update/role', async (req, res) => {
       return res.status(404).json({ message: 'User not found.' });
     }
 
-    if (updateResult.modifiedCount === 0) {
+    const Student = db.collection('students'); 
+    const Teacher = db.collection('teachers'); 
+    const Parent = db.collection('parents');
+
+    const roleDocument = await users.findOne({ email });
+    if (!roleDocument) {
       await client.close();
-      return res.status(304).json({ message: 'No changes made.' });
+      return res.status(404).json({ message: 'User not found.' });
+    }
+
+    switch(role) {
+      case 'student':
+        await Student.findOneAndUpdate({ email }, { $set: { name: roleDocument.name, email, teacherID: null, parentID: [] }}, { upsert: true });
+        break;
+      case 'teacher':
+        await Teacher.findOneAndUpdate({ email }, { $set: { name: roleDocument.name, email, documentIDs: [] }}, { upsert: true });
+        break;
+      case 'parent':
+        await Parent.findOneAndUpdate({ email }, { $set: { name: roleDocument.name, email, studentIDs: [] }},{ upsert: true });
+        break;
     }
 
     console.log('Role updated for user: ${email}');
