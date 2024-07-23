@@ -1,0 +1,112 @@
+.sidebar {
+  min-height: 70%;
+  max-height: 70%;
+  width: 220px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #0B1129;
+  overflow-x: hidden;
+  padding-top: 20px;
+  color: white;
+  overflow-y: scroll;
+}
+
+.sidebar p {
+  padding: 20px;
+}
+
+.sidebar-footer {
+  width: 220px;
+  position: fixed;
+  z-index: 1;
+  bottom: 0;
+  left: 0;
+  overflow-x: hidden;
+  background-color: #0B1129;
+}
+
+.sidebar-button {
+  background-color: #0B1129;
+  color: white;
+  border: none;
+  padding: 20px;
+  cursor: pointer;
+  
+}
+
+.search-bar {
+  padding-left: 15px;
+  padding-right: 25px;
+  margin-bottom: 20px;
+}
+
+.search-bar input[type=text] {
+  border: none;
+  border-radius: 10px;
+  padding-left: 20px;
+  width: 180px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidebar {padding-top: 15px;}
+}
+
+.dropbutton {
+  background-color: #0B1129;
+  color: white;
+  padding: 20px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.dropbutton:hover, .dropbutton:focus, .sidebar-button:hover, .sidebar-button:focus {
+  background-color: #3e4a79;
+}
+
+.grade-dropdown, .student-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.class-content, .student-list {
+  display: none;
+  background-color: #0B1129;
+  min-width: 220px;
+  box-shadow: 0px 8px 20px 0px #0B1129;
+}
+
+.show {
+  display: block;
+}
+
+.student {
+  color: white;
+  margin-left: 30px;
+  margin-top: 10px;
+  border: none;
+  background-color: #0B1129;
+  cursor: pointer;
+}
+
+.student:hover {
+  color: aquamarine;
+  text-decoration: underline;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #505050;
+  border: none;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: white;
+  border-radius: 10px;
+}

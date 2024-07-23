@@ -1,0 +1,77 @@
+body, html {
+    background-color: white;
+    color: black;
+}
+
+.main {
+    margin-left: 320px;
+    display: flex;
+    flex-direction: column;
+    align-content: flex-start;
+    padding-bottom: 50px;
+    padding-top: 50px;
+}
+
+.reports {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+}
+
+.student-report {
+    background-color: #0B1129;
+    color: white;
+    border-radius: 10px;
+    width: 310px;
+    height: 200;
+    margin-right: 20px;
+    padding: 20px;
+}
+
+.time {
+    margin-bottom: 10px;
+}
+
+.left-button {
+    margin-left: 33%;
+    margin-right: 33%;
+    margin-top: 10px;
+    padding: 5px;
+    border: none;
+    background-color: #0B1129;
+    color: white;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.left-button:hover {
+    background-color: #212c58;
+}
+
+.right-button {
+    margin-left: 10%;
+    margin-right: 10%;
+    width: 80%;
+    height: 40px;
+    border-radius: 10px;
+    background-color: white;
+    color: #0B1129;
+    margin-top: 20px;
+    cursor: pointer;
+    border: none;
+}
+
+.graph {
+    width: 640px;
+    height: 220px;
+    margin-top: 20px;
+    box-shadow: 3px 5px 3px 0px gray;
+    border-radius: 5px;
+}
+
+.break {
+    margin-top: 20px;
+    width: 420px;
+    margin-left: 120px;
+    background-color: #C2C3C9;
+}
