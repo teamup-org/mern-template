@@ -133,3 +133,5 @@ dist
 uploads/
 
 package-lock.json
+
+eng.traineddata
