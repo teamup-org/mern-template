@@ -11,7 +11,6 @@ root.render(  <Auth0Provider
     authorizationParams={{
       redirect_uri: window.location.origin
     }}
-    cacheLocation="localstorage"
   >
     <App />
   </Auth0Provider>);
