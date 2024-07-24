@@ -1,0 +1,63 @@
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  form {
+    margin-bottom: 20px;
+  }
+  
+  input[type="file"] {
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  input[type="submit"] {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  input[type="submit"]:hover {
+    background-color: #45a049;
+  }
+  
+  h1, h2 {
+    color: #333;
+  }
+  
+  p {
+    color: #666;
+  }
+  
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  li {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  
+  li h3 {
+    margin: 0;
+    color: #333;
+  }
+  
+  li p {
+    margin: 5px 0;
+  }
+  
+  .uploading {
+    color: blue;
+    font-weight: bold;
+  }
+  

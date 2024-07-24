@@ -8,6 +8,7 @@ import Profile from "./Profile";
 import ProfileGallery from "./ProfileGallery";
 import StudentViewPage from "./StudentViewPage";
 import TeacherHomePage from "./TeacherHomePage";
+import Document from './DocumentPage';
 
 const App: React.FC = () => {
 	return (
@@ -21,6 +22,7 @@ const App: React.FC = () => {
 					<Route path="/ai-profile" element={<AIProfile />} />
 					<Route path="*" element={<NotFoundPage />} />
 					<Route path="/student" element={<StudentViewPage />} />
+					<Route path="/document" element={<Document />} /> 
 				</Routes>
 			</div>
 		</Router>

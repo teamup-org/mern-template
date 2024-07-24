@@ -8,6 +8,8 @@ import userRoutes from "./routes/user";
 
 import teacherRoutes from "./routes/teacher";
 
+import Doc from '.././models/doc';
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -71,6 +73,16 @@ app.get("/count-words-docx", async (req, res) => {
 		res.status(500).json({ error: "Failed to count words in DOCX file" });
 	}
 });
+
+// Fetch all documents route
+app.get('/api/documents', async (req, res) => {
+	try {
+	  const documents = await Doc.find().select('title tags wordCount createdAt');
+	  res.json(documents);
+	} catch (error) {
+	  res.status(500).json({ error: 'Failed to fetch documents' });
+	}
+  });
 
 // Serve static files from the 'dist' directory
 app.use(express.static(path.join(__dirname, "..")));

@@ -45,6 +45,11 @@ const Sidebar = () => {
           <button className="sidebar-button">Class Statistics</button>
         </div>
       </div>
+      <div>
+        <Link to="/document">
+          <button className="sidebar-button">Document</button>
+        </Link>
+      </div>
       <div className="sidebar-footer">
         <button className="sidebar-button">Settings</button>
         <button className="sidebar-button">Account Settings</button>
