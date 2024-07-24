@@ -38,7 +38,6 @@ const StudentAssignments = () => {
             <div>
                 <Header />
                 <div className="container">
-                    <h1>Your Assignments</h1>
                     <div className="assignment">
                         <h2>Assignment Title</h2>
                         <p>Assignment Type</p>

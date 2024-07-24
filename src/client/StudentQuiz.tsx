@@ -1,15 +1,29 @@
 import React, { useState } from 'react';
-import { Navigate } from "react-router-dom";
 import { useAuth0 } from '@auth0/auth0-react';
 import './StudentQuiz.css';
 
-const StudentQuiz = () => {
-    const { user, isAuthenticated, isLoading } = useAuth0();
-    const [showResults, setShowResults] = useState(false);
-    const [currentQuestion, setCurrentQuestion] = useState(0);
-    const [score, setScore] = useState(0);
+interface AnswerOption {
+    id: number;
+    content: string;
+    answer: 'true' | 'false';
+}
 
-    const questions = [
+interface Question {
+    content: string;
+    answeroptions: AnswerOption[];
+}
+
+const StudentQuiz: React.FC = () => {
+    const { user, isAuthenticated, isLoading } = useAuth0();
+    const [showResults, setShowResults] = useState<boolean>(false);
+    const [currentQuestion, setCurrentQuestion] = useState<number>(0);
+    const [score, setScore] = useState<number>(0);
+    const [selectedOption, setSelectedOption] = useState<AnswerOption | null>(null);
+    const [submitted, setSubmitted] = useState<boolean>(false);
+    const [feedbackMessage, setFeedbackMessage] = useState<string>('');
+    const [feedbackColor, setFeedbackColor] = useState<'correct' | 'incorrect'>('correct');
+
+    const questions: Question[] = [
         {
             content: "What color is the sky?",
             answeroptions: [
@@ -39,22 +53,38 @@ const StudentQuiz = () => {
         },
     ];
 
-    const optionClicked = (answer: string) => {
-        if (answer == 'true') {
-            setScore(score + 1);
-        }
+    const handleOptionClick = (id: number, answer: 'true' | 'false') => {
+        const selectedContent = questions[currentQuestion].answeroptions.find(option => option.id === id)?.content || '';
+        setSelectedOption({ id, content: selectedContent, answer });
+    };
 
+    const handleSubmit = () => {
+        setSubmitted(true);
+        const correctOption = questions[currentQuestion].answeroptions.find(option => option.answer === 'true');
+        if (selectedOption?.answer === 'true') {
+            setScore(score + 1);
+            setFeedbackMessage(`Correct, the answer is ${correctOption?.content}.`);
+            setFeedbackColor('correct');
+        } else {
+            setFeedbackMessage(`Incorrect, the correct answer is ${correctOption?.content}.`);
+            setFeedbackColor('incorrect');
+        }
+    };
+
+    const handleNextQuestion = () => {
+        setSubmitted(false);
+        setFeedbackMessage('');
         if (currentQuestion + 1 < questions.length) {
             setCurrentQuestion(currentQuestion + 1);
         } else {
             setShowResults(true);
         }
+        setSelectedOption(null);
     };
 
     return (
         isAuthenticated && user && (
             <div className='question-box'>
-
                 {showResults ? (
                     <div className="final-results">
                         <h1>Questions Complete!</h1>
@@ -64,26 +94,43 @@ const StudentQuiz = () => {
                     </div>
                 ) : (
                     <div className="question-box">
-                        <h1>Assignment Quiz</h1>
-
-                        <p>Score: {score}</p>
-                        <h2>
+                        <p className="current-question">
                             {currentQuestion + 1}/{questions.length} Questions
-                        </h2>
-                        <h3 className="question-content">{questions[currentQuestion].content}</h3>
+                        </p>
+                        <h2 className="question-content">{questions[currentQuestion].content}</h2>
 
                         <ul>
                             {questions[currentQuestion].answeroptions.map((option) => {
+                                let className = 'quiz-options';
+                                if (submitted) {
+                                    if (option.answer === 'true') {
+                                        className += ' correct';
+                                    } else if (selectedOption && selectedOption.id === option.id) {
+                                        className += ' incorrect';
+                                    }
+                                } else if (selectedOption && selectedOption.id === option.id) {
+                                    className += ' selected';
+                                }
                                 return (
                                     <li
+                                        className={className}
                                         key={option.id}
-                                        onClick={() => optionClicked(option.answer)}
+                                        onClick={() => !submitted && handleOptionClick(option.id, option.answer)}
                                     >
                                         {option.content}
                                     </li>
                                 );
                             })}
                         </ul>
+                        {selectedOption && !submitted && (
+                            <button onClick={handleSubmit}>Submit</button>
+                        )}
+                        {submitted && (
+                            <>
+                                <p className={feedbackColor}>{feedbackMessage}</p>
+                                <button onClick={handleNextQuestion}>Next Question</button>
+                            </>
+                        )}
                     </div>
                 )}
             </div>
