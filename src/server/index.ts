@@ -1,8 +1,8 @@
 import express from "express";
 import path from "path";
 
+import cors from "cors";
 import connectDB from "../db";
-
 import { countWordsInDocx, countWordsInImg, countWordsInPdf } from "./report";
 import userRoutes from "./routes/user";
 
@@ -16,6 +16,14 @@ connectDB();
 // upload file routing
 
 app.use(express.json());
+
+app.use(
+	cors({
+		origin: "http://localhost:8080", // replace with your frontend URL
+		methods: ["GET", "POST", "PUT", "DELETE"], // add the HTTP methods you're using
+		allowedHeaders: ["Content-Type", "Authorization"], // add the headers you're using
+	})
+);
 
 // ROUTES
 app.use("/api/users", userRoutes);

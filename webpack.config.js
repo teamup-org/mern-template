@@ -9,6 +9,7 @@ module.exports = {
 	mode: isDevelopment ? "development" : "production",
 	devServer: {
 		client: { overlay: false },
+		historyApiFallback: true,
 	},
 	entry: {
 		main: "./src/client/index.tsx",
