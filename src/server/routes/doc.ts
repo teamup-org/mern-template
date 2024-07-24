@@ -1,5 +1,5 @@
 import express from 'express';
-import { countWordsInDocx, countWordsInImg, countWordsInPdf } from "./report"; // Adjust the import path as needed
+import { countWordsInDocx, countWordsInImg, countWordsInPdf } from "../helpers/report"; // Adjust the import path as needed
 
 const router = express.Router();
 
