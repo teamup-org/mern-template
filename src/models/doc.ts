@@ -6,7 +6,9 @@ interface IDoc extends Document {
   content: string;
   questions: mongoose.Schema.Types.ObjectId[];
   tags: string[];
-  words: number;
+  wordCount: number;
+  wordCount3Plus: number;
+  wordCount4Plus: number;
   createdBy: mongoose.Schema.Types.ObjectId;
   assignedTo: mongoose.Schema.Types.ObjectId[];
 }
@@ -17,7 +19,9 @@ const docSchema = new Schema<IDoc>({
   content: { type: String, required: true },
   questions: [{ type: Schema.Types.ObjectId, ref: 'Question' }],
   tags: [String],
-  words: { type: Number },
+  wordCount: { type: Number, required: true },
+  wordCount3Plus: { type: Number, required: true },
+  wordCount4Plus: { type: Number, required: true },
   createdBy: { type: Schema.Types.ObjectId, ref: 'User', required: true },
   assignedTo: [{ type: Schema.Types.ObjectId, ref: 'User' }]
 });

@@ -6,7 +6,7 @@ import Tesseract from "tesseract.js";
 async function extractTextWithOCR(filePath: string): Promise<string> {
 	const data = fs.readFileSync(filePath);
 	const result = await Tesseract.recognize(data, "eng", {
-		logger: (m) => console.log(m),
+		logger: (m: any) => console.log(m),
 	});
 	return result.data.text;
 }
@@ -19,7 +19,7 @@ export async function countWordsInPdf(
 	const data = await pdf(dataBuffer);
 	const text = data.text;
 	const words = text.split(/\s+/);
-	const filteredWords = words.filter((word) => word.length >= minLength);
+	const filteredWords = words.filter((word: string) => word.length >= minLength);
 	const wordCount = filteredWords.length;
 	return wordCount;
 }
@@ -42,7 +42,7 @@ export async function countWordsInDocx(
 	const result = await mammoth.extractRawText({ path: filePath });
 	const text = result.value;
 	const words = text.split(/\s+/);
-	const filteredWords = words.filter((word) => word.length >= minLength);
+	const filteredWords = words.filter((word: string) => word.length >= minLength);
 	const wordCount = filteredWords.length;
 	return wordCount;
 }
@@ -55,7 +55,7 @@ export async function contentInPdf(
 	const data = await pdf(dataBuffer);
 	const text = data.text;
 	const words = text.split(/\s+/);
-	const filteredWords = words.filter((word) => word.length >= minLength);
+	const filteredWords = words.filter((word: string) => word.length >= minLength);
 	return filteredWords;
 }
 
@@ -76,6 +76,6 @@ export async function contentInDocx(
 	const result = await mammoth.extractRawText({ path: filePath });
 	const text = result.value;
 	const words = text.split(/\s+/);
-	const filteredWords = words.filter((word) => word.length >= minLength);
+	const filteredWords = words.filter((word: string) => word.length >= minLength);
 	return filteredWords;
 }

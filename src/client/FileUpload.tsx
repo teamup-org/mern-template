@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import React, { useState } from "react";
 
 const FileUpload: React.FC = () => {
@@ -40,7 +40,7 @@ const FileUpload: React.FC = () => {
 			setWordCount(document.wordCount);
 			setWordCount3char(document.wordCount3Plus);
 			setWordCount4char(document.wordCount4Plus);
-		} catch (err) {
+		} catch (err: any) {
 			if (axios.isAxiosError(err) && err.response) {
 				console.log(err.response.data.message);
 			} else {

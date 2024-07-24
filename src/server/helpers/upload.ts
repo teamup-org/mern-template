@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import Doc from "../models/doc";
+import Doc from "../../models/doc";
 import {
 	contentInDocx,
 	contentInImg,

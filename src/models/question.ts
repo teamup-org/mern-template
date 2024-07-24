@@ -1,4 +1,9 @@
 import mongoose, { Schema, model, Document } from 'mongoose';
+enum Type {
+  FreeResponse = 'free response',
+  TrueFalse = 'true/false',
+  MultipleChoice = 'multiple choice'
+}
 
 interface IQuestion extends Document {
   content: string;
@@ -6,6 +11,7 @@ interface IQuestion extends Document {
   difficulty?: number;
   chapters?: number[];
   pages?: number[];
+  type?: Type;
 }
 
 const questionSchema = new Schema<IQuestion>({
