@@ -14,6 +14,7 @@ interface IUser extends Document {
   email: string;
   picture?: string;
   role: Role;
+  description?: string;
   students: mongoose.Schema.Types.ObjectId[];
   docs: mongoose.Schema.Types.ObjectId[];
   assignments: mongoose.Schema.Types.ObjectId[];
@@ -29,6 +30,7 @@ const userSchema = new Schema<IUser>({
   email: { type: String, required: true, unique: true },
   picture: String,
   role: { type: String, enum: Object.values(Role), required: true, default: Role.None },
+  description: String,
   // Teacher
   students: [{ type: Schema.Types.ObjectId, ref: 'User' }],
   docs: [{ type: Schema.Types.ObjectId, ref: 'Doc' }],
