@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import connectDB from '../db';
+import connectDB from '../server/helpers/db';
 import { User, Role } from '../models/user';
 import Assignment from '../models/assignment';
 

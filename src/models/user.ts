@@ -15,7 +15,7 @@ interface IUser extends Document {
   picture?: string;
   role: Role;
   students: mongoose.Schema.Types.ObjectId[];
-  books: mongoose.Schema.Types.ObjectId[];
+  docs: mongoose.Schema.Types.ObjectId[];
   assignments: mongoose.Schema.Types.ObjectId[];
   grade?: number;
   parents: mongoose.Schema.Types.ObjectId[];
@@ -31,7 +31,7 @@ const userSchema = new Schema<IUser>({
   role: { type: String, enum: Object.values(Role), required: true, default: Role.None },
   // Teacher
   students: [{ type: Schema.Types.ObjectId, ref: 'User' }],
-  books: [{ type: Schema.Types.ObjectId, ref: 'Book' }],
+  docs: [{ type: Schema.Types.ObjectId, ref: 'Doc' }],
   assignments: [{ type: Schema.Types.ObjectId, ref: 'Assignment' }],
   // Student
   grade: Number,

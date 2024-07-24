@@ -1,25 +1,15 @@
 import express from 'express';
 import path from 'path';
-import { MongoClient } from 'mongodb';
 
+import connectDB from './helpers/db';
 import userRoutes from './routes/user';
+import docRoutes from './routes/doc';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-const url = 'mongodb://localhost:27017';
-const dbName = 'TeamUp';
-const client = new MongoClient(url);
-
 async function main() {
-  try {
-    await client.connect();
-    console.log('Connected to MongoDB');
-    app.locals.db = client.db(dbName);
-  } catch (error) {
-    console.error('Unable to connect to MongoDB:', error);
-    process.exit(1);
-  }
+  await connectDB();
 }
 
 main().catch(console.error);
@@ -28,6 +18,7 @@ app.use(express.json());
 
 // ROUTES
 app.use('/api/users', userRoutes);
+app.use('/api/docs', docRoutes);
 
 // Serve static files from the 'dist' directory
 app.use(express.static(path.join(__dirname, '..')));
