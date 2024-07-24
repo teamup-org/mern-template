@@ -15,16 +15,10 @@ const Header = () => {
       <nav>
         <ul>
           <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
             <Link to="/profile-gallery">Profile Gallery</Link>
           </li>
           <li>
             <Link to="/profile">Profile</Link>
-          </li>
-          <li>
-            <Link to="/student-assignments">Assignments</Link>
           </li>
           <li>
             <button

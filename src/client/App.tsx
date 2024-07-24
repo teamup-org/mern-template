@@ -6,7 +6,6 @@ import ProfileGallery from './ProfileGallery';
 import Profile from './Profile';
 import NotFoundPage from './NotFoundPage';
 import AIProfile from './AIProfile';
-import StudentAssignments from './StudentAssignments';
 
 const App: React.FC = () => {
   return (
@@ -17,7 +16,6 @@ const App: React.FC = () => {
           <Route path="/profile" element={<Profile />} />
           <Route path="/profile-gallery" element={<ProfileGallery />} />
           <Route path="/ai-profile" element={<AIProfile />} />
-          <Route path="/student-assignments" element={<StudentAssignments />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </div>
