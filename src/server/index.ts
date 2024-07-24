@@ -6,6 +6,8 @@ import docRoutes from "./routes/doc";
 import teacherRoutes from "./routes/teacher";
 import userRoutes from "./routes/user";
 
+import Doc from ".././models/doc";
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -29,6 +31,26 @@ app.use(
 		allowedHeaders: ["Content-Type", "Authorization"], // add the headers you're using
 	})
 );
+
+// ROUTES
+// Serve static files from the 'dist' directory
+app.use(express.static(path.join(__dirname, "..")));
+
+// Example of a simple API endpoint (order matters)
+app.get("/api", (req, res) => {
+	res.json({ message: "Hello, world!" });
+});
+
+// Fetch all documents route
+app.get("/api/documents", async (req, res) => {
+	try {
+		const documents = await Doc.find().select("title tags wordCount createdAt");
+		res.json(documents);
+	} catch (error) {
+		res.status(500).json({ error: "Failed to fetch documents" });
+	}
+});
+
 // Serve static files from the 'dist' directory
 app.use(express.static(path.join(__dirname, "..")));
 
