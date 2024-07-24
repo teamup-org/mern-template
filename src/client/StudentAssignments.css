@@ -22,11 +22,13 @@ body {
 }
 
 .quiz {
-    margin-top: 20px;
-    margin-bottom: 20px;
-    border: 0px solid #ccc;
-    padding: 0px;
-    background-color: #e9e9e9;
+    margin: 0 auto;
+    background-color: white;
+    padding: 16px;
+    border-radius: 16px;
+    color: black;
+    width: 80%;
+    height: auto;
 }
 
 button {

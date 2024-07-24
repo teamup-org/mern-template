@@ -1,0 +1,21 @@
+.question-box {
+    margin: 0 auto;
+    background-color: white;
+    padding: 16px;
+    border-radius: 16px;
+    color: black;
+    width: 80%;
+    height: auto;
+}
+
+.quiz {
+    text-align: left;
+}
+
+ul {
+    list-style: none;
+}
+
+li {
+    background-color: white;
+}

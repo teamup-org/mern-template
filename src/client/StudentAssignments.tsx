@@ -3,6 +3,7 @@ import { Navigate } from "react-router-dom";
 import { useAuth0 } from '@auth0/auth0-react';
 import Header from './Header';
 import './StudentAssignments.css';
+import StudentQuiz from './StudentQuiz';
 
 const StudentAssignments = () => {
     const { user, isAuthenticated, isLoading } = useAuth0();
@@ -28,6 +29,10 @@ const StudentAssignments = () => {
         setQuizVisible(true); // Show quiz
     };
 
+    // Create function to handle get the assignment assigned by the teacher to the student
+    // get document associated with the assignment
+    // get questions associated with the document/assignment (quiz template in StudentQuiz component)
+
     return (
         isAuthenticated && user && (
             <div>
@@ -52,13 +57,7 @@ const StudentAssignments = () => {
                         )}
                         
                         {isQuizVisible && (
-                            <div className="quiz">
-                                <h3>Quiz Questions</h3>
-                                <p>Current Question / Total Questions</p>
-
-                                {/* Question 1 */}
-                                {/* Add logic for answering questions */}
-                            </div>
+                            <StudentQuiz/>
                         )}
                     </div>
                 </div>
