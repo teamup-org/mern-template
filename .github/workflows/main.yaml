@@ -1,0 +1,71 @@
+name: FAST Workflow
+on: [push, pull_request]
+
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+   
+    steps:
+      # - name: Check out repo code
+      #   uses: actions/checkout@v4
+
+      # - name: Set up Node.js
+      #   uses: actions/setup-node@v2
+      #   with:
+      #     node-version: '16'
+
+      # - name: Install dependencies
+      #   run: |
+      #     npm install
+
+      # - name: Install specific loaders
+      #   run: |
+      #     npm install --save-dev style-loader file-loader css-loader
+
+
+      # - name: Build project with Webpack
+      #   run: npx webpack --config webpack.config.js --stats-error-details
+        
+      # - name: Build application
+      #   run: npm run build
+     
+
+      # - name: Update CA Certificates
+      #   run: apt-get update && apt-get install -y ca-certificates
+
+
+      # - name: Install doctl
+      #   uses: digitalocean/action-doctl@v2
+      #   with:
+      #     token: dop_v1_1df8349e07b1fb7b78eb39afc11e18457e3030cb0dcfca59da568021be7cf440
+
+
+      # - name: Check if app exists
+      #   id: check_app
+      #   run: |
+      #     bash -c '
+      #     echo "Listing apps to check if the app exists..."
+      #     apps=$(doctl app list --no-header)
+      #     echo "$apps"
+
+      #     app_name="fastapp"
+      #     app_id=$(echo "$apps" | grep "$app_name" | awk "{print \$1}")
+                  
+      #     if [ -z "$app_id" ]; then
+      #       echo "App not found"
+      #     else
+      #       echo "App ID: $app_id"
+      #       echo "APP_ID=$app_id" >> $GITHUB_ENV
+      #     fi
+      #     '
+
+      # - name: Create App on DigitalOcean App Platform
+      #   if: ${{ env.APP_ID == '' }}
+      #   run: |
+      #     doctl app create --spec .do/app.yaml
+      #     app_id=$(doctl app list --format "ID,Spec Name" --no-header | grep "<fastapp>" | awk '{print $1}')
+      #     echo "APP_ID=$app_id" >> $GITHUB_ENV
+
+      # - name: Deploy to DigitalOcean App Platform
+      #   run: doctl app create-deployment ${{ env.APP_ID }} 

@@ -1,0 +1,26 @@
+features:
+  - buildpack-stack=ubuntu-22
+ingress:
+  rules:
+    - component:
+        name: deployedtemplate
+      match:
+        path:
+          prefix: /
+name: fastapp
+region: nyc
+services:
+  - build_command: |
+      npm install &&
+      npm install css-loader style-loader file-loader --save-dev &&
+      npm run build
+    environment_slug: node-js
+    github:
+      branch: cicd
+      deploy_on_push: true
+      repo: teamup-org/mern-template
+    http_port: 3000
+    instance_count: 1
+    instance_size_slug: apps-s-1vcpu-0.5gb
+    name: deployedtemplate
+    run_command: node ./dist/server/index.js
