@@ -1,81 +1,81 @@
 .question-box {
-    /* Center the div  */
-    margin: 0 auto;
+	/* Center the div  */
+	margin: 0 auto;
 
-    /* Dimensions  */
-    width: 80%; /* Can be in percentage also. */
-    height: auto;
+	/* Dimensions  */
+	width: 80%; /* Can be in percentage also. */
+	height: auto;
 
-    /* Visual  */
-    background-color: white;
-    padding: 16px;
-    border-radius: 16px;
-    color: rgb(1, 1, 100);;
-    font-size: 16px;
-    font-weight: bold;
+	/* Visual  */
+	background-color: white;
+	padding: 16px;
+	border-radius: 16px;
+	color: rgb(1, 1, 100);
+	font-size: 16px;
+	font-weight: bold;
 }
 
 .quiz {
-    text-align: left;
+	text-align: left;
 }
 
 ul {
-    list-style: none;
+	list-style: none;
 }
 
 .quiz-options {
-    margin: 5px;
-    margin-top: 8px;
-    background-color: white;
-    padding: 8px;
-    border: 3px solid white;
-    border-radius: 10px;
-    font-size: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Default shadow */
-    transition: box-shadow 0.3s ease; /* Smooth transition for shadow */
-    cursor: pointer;
+	margin: 5px;
+	margin-top: 8px;
+	background-color: white;
+	padding: 8px;
+	border: 3px solid white;
+	border-radius: 10px;
+	font-size: 20px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Default shadow */
+	transition: box-shadow 0.3s ease; /* Smooth transition for shadow */
+	cursor: pointer;
 }
 
 .quiz-options.selected {
-    background-color: gray;
-    border-color: gray;
+	background-color: gray;
+	border-color: gray;
 }
 
 .quiz-options.correct {
-    background-color: #d4edda;
-    border-color: #d4edda;
+	background-color: #d4edda;
+	border-color: #d4edda;
 }
 
 .quiz-options.incorrect {
-    background-color: #f8d7da;
-    border-color: #f8d7da;
+	background-color: #f8d7da;
+	border-color: #f8d7da;
 }
 
 .correct {
-    color: green;
+	color: green;
 }
 
 .incorrect {
-    color: red;
+	color: red;
 }
 
 .quiz-options:hover {
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+	box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
 }
 
 .current-question {
-    color: gray;
+	color: gray;
 }
 
 .quiz-button {
-    background-color: rgb(1, 1, 100);
-    border: none;
-    color: white;
-    padding: 8px 100px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    font-weight: bold;
-    border-radius: 5px;
+	background-color: rgb(1, 1, 100);
+	border: none;
+	color: white;
+	padding: 8px 100px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	font-weight: bold;
+	border-radius: 5px;
 }
