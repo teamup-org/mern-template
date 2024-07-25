@@ -7,19 +7,29 @@ enum Type {
 
 interface IQuestion extends Document {
   content: string;
-  answer: string; 
+  answers: [AnswerOption];
   difficulty?: number;
   chapters?: number[];
   pages?: number[];
   type?: Type;
+  choices?: string[];
 }
+
+interface AnswerOption {
+  id: number;
+  content: string;
+  answer: boolean; 
+}
+
 
 const questionSchema = new Schema<IQuestion>({
   content: { type: String, required: true },
-  answer: { type: String, required: true },
+  answers: [{ id: Number, content: String, answer: Boolean }],
   difficulty: { type: Number },
   chapters: [Number],
-  pages: [Number]
+  pages: [Number],
+  type: { type: String, enum: Object.values(Type) },
+  choices: [String]
 });
 
 const Question = model<IQuestion>('Question', questionSchema);

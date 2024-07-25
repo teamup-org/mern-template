@@ -1,6 +1,6 @@
 import express from 'express';
 import mongoose from 'mongoose';
-import User from '../../models/user';
+import { User, Role } from '../../models/user';
 
 const router = express.Router();
 
@@ -56,14 +56,21 @@ router.get('/teacher/:email', async (req, res) => {
     }
 });
 
+
 // Route to register a user
 router.post('/register', async (req, res) => {
     try {
         console.log(req.body);
-        const { name, email, password, role, parentEmail, teacherEmail } = req.body;
+        const { name, email, password, role, parentEmail, teacherEmail } : 
+        { name: string, email: string, password: string, role: Role, parentEmail?: string, teacherEmail?: string } = req.body;
+
+        // Validate role
+        if (!Object.values(Role).includes(role)) {
+            return res.status(400).json({ message: 'Invalid role.' });
+        }
         
-        const parent = parentEmail ? await User.findOne({ email: parentEmail, role: 'parent' }) : null;
-        const teacher = teacherEmail ? await User.findOne({ email: teacherEmail, role: 'teacher' }) : null;
+        const parent = parentEmail ? await User.findOne({ email: parentEmail, role: Role.Parent }) : null;
+        const teacher = teacherEmail ? await User.findOne({ email: teacherEmail, role: Role.Teacher }) : null;
 
         const newUser = new User({
             name,
@@ -80,6 +87,7 @@ router.post('/register', async (req, res) => {
         res.status(400).send(error.message);
     }
 });
+
 
 // Beeber's code
 
@@ -121,10 +129,17 @@ router.get('/profiledescription', async (req, res) => {
     }
 });
 
+
 // Route to update user role
 router.put('/update/role', async (req, res) => {
     try {
-        const { email, role } = req.body;
+        const { email, role } : { email: string, role: Role } = req.body;
+
+        // Validate role
+        if (!Object.values(Role).includes(role)) {
+            return res.status(400).json({ message: 'Invalid role.' });
+        }
+
         const updateResult = await User.updateOne({ email }, { $set: { role } });
 
         if (updateResult.matchedCount === 0) {

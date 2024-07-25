@@ -1,4 +1,4 @@
-import axios, { AxiosError } from "axios";
+import axios from "axios";
 import React, { useState } from "react";
 
 const FileUpload: React.FC = () => {

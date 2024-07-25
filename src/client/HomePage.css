@@ -15,7 +15,7 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
-  background: #f8f8f8;
+  background: #4F9DAA;
   border-bottom: 1px solid #ddd;
   position: fixed;
   width: 100%;
@@ -33,31 +33,34 @@ nav ul {
   padding: 0;
   margin: 0;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
+  color: #FFFFFF;
 }
 
 nav li {
-  margin: 0 10px;
+  margin-left: 5px;
 }
 
 nav a, .nav-button {
   text-decoration: none;
-  color: #333;
+  color: #b2d682;
   font-size: 14px; /* Navbar font size */
 }
 
 .nav-button {
-  background-color: black;
-  color: white;
+  background-color: #94B93D;
+  color: #FFFFFF;
   padding: 10px 20px;
-  border-radius: 5px;
   margin: 0 20px;
+  cursor: pointer;
   display: inline-block;
+  border: none;
 }
 
 .button {
-  background-color: black;
-  color: white;
+  background-color: #94B93D;
+  color: #FFFFFF;
   padding: 10px 20px;
   border-radius: 5px;
   border: none;
@@ -68,7 +71,8 @@ nav a, .nav-button {
 
 .hero {
   padding: 130px 20px 80px;
-  background: #f0f0f0;
+  background: #D4E0BD;
+  color: #152231;
 }
 
 .hero h1 {
@@ -85,6 +89,8 @@ nav a, .nav-button {
 
 .content {
   padding: 20px 60px; /* Increase left and right padding */
+  background: #E4EADD;
+  color: #152231;
 }
 
 .content-item {
@@ -92,6 +98,7 @@ nav a, .nav-button {
   align-items: center;
   justify-content: space-between;
   margin-bottom: 60px; /* Increase padding between sections */
+  color: #152231;
 }
 
 .content-item img {
@@ -104,6 +111,7 @@ nav a, .nav-button {
 .text-container {
   width: 45%;
   text-align: left;
+  color: #152231;
 }
 
 .text-container h2 {
@@ -115,9 +123,10 @@ nav a, .nav-button {
 }
 
 .features {
-  background: #f8f8f8;
+  background: #E4EADD;
   padding: 30px 60px 60px; /* Decreased top padding */
   text-align: left;
+  color: #152231;
 }
 
 .features h2 {
@@ -133,6 +142,7 @@ nav a, .nav-button {
 .feature-item {
   width: 45%;
   margin: 10px 0;
+  color: #152231;
 }
 
 .features-grid .feature-item:nth-child(even) {
@@ -148,17 +158,123 @@ nav a, .nav-button {
   font-size: 18px; /* Increased font size */
 }
 
-footer {
+.home-footer {
   padding: 20px;
-  background: #333;
-  color: #fff;
+  background: #4F9DAA;
+  color: #152231;
+  display: flex;
+  align-content: flex-start;
+  font-weight: bold;
 }
 
-footer button {
-  padding: 10px 20px;
-  font-size: 18px; /* Increased font size */
-  cursor: pointer;
-  background: #fff;
-  color: #333;
+.placeholder {
+  background: #152231;
+  border-radius: 5px;
+  height: 20px;
+  width: 20px;
+  margin: 5px;
+}
+
+.footer-container1 {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-container2 {
+  width: 60%;
+}
+
+.container-container {
+  display: flex;
+  flex-direction: row;
+  margin-top: 30px;
+}
+
+.bottom {
+  background: #D4E0BD;
+  padding: 30px;
+  color: #152231;
+}
+
+.login-footer {
+  padding: 20px;
+  background: #4F9DAA;
+  color: #152231;
+  display: flex;
+  align-content: flex-start;
+  font-weight: bold;
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
+}
+
+.line {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin-top: 10px;
+  padding-left: 33%;
+  padding-right: 33%;
+}
+
+.line::before,
+.line::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid #152231;
+}
+
+.line:not(:empty)::before {
+  margin-right: 3px;
+}
+
+.line:not(:empty)::after {
+  margin-left: 3px;
+}
+
+.login-screen {
+  background: #E4EADD;
+  height: 100%;
+  width: 100%;
+  left: 0px;
+  top: 0px;
+  overflow: hidden;
+  padding-top: 130px;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+  padding-left: 33%;
+  padding-right: 33%;
+}
+
+.disclaimer {
+  padding-left: 33%;
+  padding-right: 33%;
+  margin-bottom: 200px;
+  margin-top: 10px;
+}
+
+.login-button {
+  background-color: #4F9DAA;
+  color: #FFFFFF;
+  font-weight: bold;
   border: none;
+  border-radius: 5px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.google-button {
+  width: 33%;
+  background-color: #4F9DAA;
+  color: #FFFFFF;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  margin-top: 10px;
+  cursor: pointer;
 }
