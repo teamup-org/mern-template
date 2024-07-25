@@ -1,0 +1,8 @@
+FROM node:16-alpine
+WORKDIR /app
+COPY . /app/
+RUN npm install
+RUN npm run build  # Using the build script to handle TypeScript compilation and any other build steps
+CMD ["npm", "start"]  # This script runs node ./dist/server/index.js as per your package.json
+EXPOSE 3000
+ENTRYPOINT ["tail", "-f", "/dev/null"]
