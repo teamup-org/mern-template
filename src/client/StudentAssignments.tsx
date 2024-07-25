@@ -37,12 +37,12 @@ const StudentAssignments = () => {
         isAuthenticated && user && (
             <div>
                 <Header />
-                <div className="container">
+                <div className="assignments-container">
                     <div className="assignment">
                         <h2>Assignment Title</h2>
                         <p>Assignment Type</p>
                         {!isDocumentVisible && !isQuizVisible && (
-                            <button onClick={handleStartAssignment}>Begin</button>
+                            <button className='start-button' onClick={handleStartAssignment}>Begin</button>
                         )}
                         {isDocumentVisible && !isQuizVisible && (
                             <div className="document">
@@ -52,7 +52,7 @@ const StudentAssignments = () => {
                             </div>
                         )}
                         {isDocumentVisible && (
-                            <button onClick={handleStartQuiz}>Answer Questions</button>
+                            <button className='start-button' onClick={handleStartQuiz}>Answer Questions</button>
                         )}
                         
                         {isQuizVisible && (
