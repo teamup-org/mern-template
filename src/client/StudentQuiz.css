@@ -67,7 +67,7 @@ ul {
     color: gray;
 }
 
-button {
+.quiz-button {
     background-color: rgb(1, 1, 100);
     border: none;
     color: white;

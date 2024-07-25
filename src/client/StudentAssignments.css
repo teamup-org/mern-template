@@ -1,5 +1,5 @@
 /* StudentAssignments.css */
-body {
+.assignments-container {
     font-family: Arial, sans-serif;
     margin: 20px;
     padding: 20px;
@@ -32,15 +32,16 @@ body {
     height: auto;
 }
 
-button {
+.start-button {
     margin-top: 10px;
     padding: 10px 15px;
     background-color: #007bff;
     color: white;
     border: none;
     cursor: pointer;
+    border-radius: 5px;
 }
 
-button:hover {
+.start-button:hover {
     background-color: #212c58;
 }

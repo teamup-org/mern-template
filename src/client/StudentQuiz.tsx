@@ -123,12 +123,12 @@ const StudentQuiz: React.FC = () => {
                             })}
                         </ul>
                         {selectedOption && !submitted && (
-                            <button onClick={handleSubmit}>Submit</button>
+                            <button className='quiz-button' onClick={handleSubmit}>Submit</button>
                         )}
                         {submitted && (
                             <>
                                 <p className={feedbackColor}>{feedbackMessage}</p>
-                                <button onClick={handleNextQuestion}>Next Question</button>
+                                <button className='quiz-button' onClick={handleNextQuestion}>Next Question</button>
                             </>
                         )}
                     </div>
