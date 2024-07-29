@@ -2,10 +2,15 @@ import React, {useRef, useState, useEffect} from "react";
 import Profile from "./Profile";
 import { Button, TextField, Typography, Slider, FormControl, InputLabel, Select, MenuItem } from "@mui/material";
 
-const ProfileDescription = () => {
+type ProfileDescriptionProps = {
+    text: string,
+    onChange?: (event: any) => void
+}
+
+const ProfileDescription = ({text, onChange}:ProfileDescriptionProps) => {
 
     const [isLoading, setIsLoading] = useState(false);
-    const [descriptionRef, setDescriptionRef] = useState('');
+    //const [descriptionRef, setDescriptionRef] = useState('');
     const [message, setMessage] = useState('');
     const [temperature, setTemperature] = useState(0.2);
     const [tone, setTone] = useState('technical');
@@ -15,7 +20,7 @@ const ProfileDescription = () => {
     const handleClick = async () => {
         try {
             setIsLoading(true);
-            const reqBody = descriptionRef
+            const reqBody = text
             const response = await fetch(`http://localhost:3000/rewrite-ai`,
                 {
                     method: "POST",
@@ -52,10 +57,12 @@ const ProfileDescription = () => {
             // Handle error
         }
     }
-
+    
+    /*
     const handleChange = (event: any) => {
         setDescriptionRef(event.target.value);
     }
+    */
 
     const handleTemperatureChange = (event: any) => {
         setTemperature(event.target.value);
@@ -76,6 +83,13 @@ const ProfileDescription = () => {
         setAdvanceSettingDisplay(!advanceSettingDisplay)
     }
 
+    const handleAcceptRewrite = () => {
+        if (onChange) {
+          onChange({ target: { value: message } } as React.ChangeEvent<HTMLInputElement>);
+        }
+        setMessage('');
+      };
+
     // Reset variables to default when advance setting is closed
     useEffect(() => {
         if (!advanceSettingDisplay) {
@@ -95,18 +109,25 @@ const ProfileDescription = () => {
 
     return (
       <div>
-        <div className="profile-box" style={{outline:'2px solid', width:'30vw', padding:'20px'}}>
-            <div className="profile-header">
-                <Profile />
-            </div>
-            <div className="profile-body">
-                <h1>Profile Description:</h1>
-                <TextField
+        <div className="profile-box" style={{ display: 'flex', flexDirection: 'row', alignItems: 'stretch', border: '1px solid #ccc', borderRadius: '8px'}}>
+            <TextField
                 multiline
                 fullWidth
-                onChange={handleChange}
-                />
-            </div>
+                value={text}
+                onChange={onChange}
+                style={{ flex: '1', height: '100%', borderRadius: '8px' }}
+            />
+            {message && (
+                <div className="profile-output" style={{ flex: '1', padding: '10px', backgroundColor: '#f9f9f9', alignItems: 'center', justifyContent: 'center', borderRadius: '8px' }}>
+                    <Typography
+                        sx={{ wordBreak: "break-word" }}
+                    >
+                        {isLoading ? <p>loading...</p> : message}
+                    </Typography>
+                    <Button onClick={handleAcceptRewrite}> Accept Rewrite </Button>
+                </div>
+            )}
+        </div>
             <div style={{display: 'flex', justifyContent: 'space-between', marginBottom: '10px'}}>
                 <Button onClick={handleClick}> Rewrite With AI </Button>
                 <Button onClick={handleAdvanceSetting}> Advance Setting </Button>
@@ -160,14 +181,6 @@ const ProfileDescription = () => {
                 />
             </div>
         </div>
-        <div className="profile-output" style={{outline:'2px solid', width:'30vw', padding:'20px'}}>
-            <Typography
-                sx={{ wordBreak: "break-word" }}
-            >
-                {isLoading ? <p>loading...</p> : message}
-            </Typography>
-        </div>
-      </div>
     );
   }
   

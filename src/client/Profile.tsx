@@ -3,6 +3,7 @@ import { Link, Navigate } from "react-router-dom";
 import { useAuth0 } from '@auth0/auth0-react';
 import Header from './Header';
 import './Profile.css';
+import ProfileDescription from './ProfileDescription';
 
 const Profile = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
@@ -46,6 +47,7 @@ const Profile = () => {
         });
 
         console.log('User time updated');
+        await fetchProfileDescription();
         } else {
           console.error('Error updating profile description');
         }
@@ -57,41 +59,42 @@ const Profile = () => {
     }
   };   
 
-  const handleCancelEdit = () => {
+  const handleCancelEdit = async() => {
     setIsEditingDescription(false);
+    await fetchProfileDescription();
   };
 
   const handleDescriptionChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setProfileDescription(event.target.value);
   };
 
-  useEffect(() => {
-    const fetchProfileDescription = async () => {
-      try {
-        if (isAuthenticated && user) {
-          const response = await fetch(`http://localhost:3000/api/profiledescription?email=${user.email}`, {
-            method: 'GET',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-          });
-  
-          if (response.ok) {
-            const { description } = await response.json();
-            setProfileDescription(description);
-          } else {
-            console.error('Error fetching profile description:', await response.json());
-          }
+  const fetchProfileDescription = async () => {
+    try {
+      if (isAuthenticated && user) {
+        const response = await fetch(`http://localhost:3000/api/profiledescription?email=${user.email}`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+
+        if (response.ok) {
+          const { description } = await response.json();
+          setProfileDescription(description);
         } else {
-          console.error('User object is undefined');
+          console.error('Error fetching profile description:', await response.json());
         }
-      } catch (error) {
-        console.error('Error fetching profile description:', error);
+      } else {
+        console.error('User object is undefined');
       }
-    };
-  
+    } catch (error) {
+      console.error('Error fetching profile description:', error);
+    }
+  };
+
+  useEffect(() => {
     fetchProfileDescription();
-  }, [isAuthenticated, user]);  
+  }, [isAuthenticated, user]);
 
   return (
     isAuthenticated &&
@@ -104,12 +107,10 @@ const Profile = () => {
             <h2>{user.name}</h2>
             <p>{user.email}</p>
             {isEditingDescription ? (
-              <div>
-                <textarea
-                  value={profileDescription}
+              <div style={{width:'100%'}}>
+                <ProfileDescription 
+                  text={profileDescription}
                   onChange={handleDescriptionChange}
-                  rows={5}
-                  cols={40}
                 />
                 <button onClick={handleSaveDescription}>Save</button>
                 <button onClick={handleCancelEdit}>Cancel</button>
