@@ -15,6 +15,9 @@ const Header = () => {
       <nav>
         <ul>
           <li>
+            <Link to="/ai-profile">AI Profile</Link>
+          </li>
+          <li>
             <Link to="/profile-gallery">Profile Gallery</Link>
           </li>
           <li>

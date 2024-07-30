@@ -5,6 +5,7 @@ import Header from './Header';
 import './Profile.css';
 
 const Profile = () => {
+  
   const { user, isAuthenticated, isLoading } = useAuth0();
   const [isEditingDescription, setIsEditingDescription] = useState(false);
   const [profileDescription, setProfileDescription] = useState('');

@@ -5,7 +5,7 @@ import OpenAI from 'openai';
 const dotenv = require('dotenv');
 dotenv.config();
 
-import { MongoClient } from 'mongodb';
+import { MongoClient, ObjectId } from 'mongodb';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -158,6 +158,54 @@ app.get('/api/profiledescription', async (req, res) => {
   }
 });
 
+app.post('/api/ai_responses/create', async (req, res) => {
+  try {
+    const { user, originalMessage, aiResponse, tone, temperature, maxWords } = req.body;
+    const client = await MongoClient.connect(url);
+    const db = client.db(dbName);
+    const aiResponses = db.collection('ai_responses');
+
+    console.log('Creating new AI response:', req.body);
+
+    const result = await aiResponses.insertOne({ 
+      user, 
+      originalMessage, 
+      aiResponse, 
+      tone, 
+      temperature, 
+      maxWords, 
+      createdAt: new Date() 
+    });
+    console.log(`New AI response created with ID: ${result.insertedId}`);
+    await client.close();
+    res.status(201).json({ message: 'AI response created', id: result.insertedId });
+  } catch (err) {
+    console.error('Error creating AI response:', err);
+    res.status(500).json({ message: 'Error creating AI response' });
+  }
+});
+
+//get ai responses by email
+app.get('/api/ai_responses', async (req, res) => {
+  try {
+    const { email } = req.query;
+
+    console.log('Fetching AI responses for user:', email);
+
+    const client = await MongoClient.connect(url);
+    const db = client.db(dbName);
+    const aiResponses = db.collection('ai_responses');
+
+    const responses = await aiResponses.find({ user: email }).toArray();
+
+    await client.close();
+    res.json(responses);
+  } catch (error) {
+    console.error('Error fetching AI responses:', error);
+    res.status(500).json({ error: 'Error fetching AI responses' });
+  }
+});
+
 // Serve static files from the 'dist' directory
 app.use(express.static(path.join(__dirname, '..')));
 
@@ -167,7 +215,7 @@ app.get('/api', (req, res) => {
 });
 
 app.post('/rewrite-ai', async (req, res) => {
-  const {message, temperature, maxWords, tone} = req.body;
+  const {user, message, temperature, maxWords, tone} = req.body;
 
   const completion = await openai.chat.completions.create({
     messages: [ {role: "system", content: `You are an assistant that provides information in an ${tone} tone.`},
@@ -176,7 +224,25 @@ app.post('/rewrite-ai', async (req, res) => {
     temperature: temperature,
   });
 
-  res.json({message: completion.choices[0].message.content})
+  const aiResponseContent = completion.choices[0].message.content;
+
+  // save the response to the database
+  const saveResponse = await fetch('http://localhost:3000/api/ai_responses/create', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      user: user,
+      originalMessage: message,
+      aiResponse: aiResponseContent,
+      tone: tone,
+      temperature: temperature,
+      maxWords: maxWords,
+    }),
+  });
+
+  res.json({message: aiResponseContent});
 });
 
 // Fallback for SPA routing

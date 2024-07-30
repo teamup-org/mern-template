@@ -2,9 +2,13 @@ import React, {useRef, useState, useEffect} from "react";
 import Profile from "./Profile";
 import { Button, TextField, Typography, Slider, FormControl, InputLabel, Select, MenuItem } from "@mui/material";
 
-const ProfileDescription = () => {
+type ProfileDescriptionProps = {
+    email: string;
+}
 
+const ProfileDescription = ({email}:ProfileDescriptionProps) => {
     const [isLoading, setIsLoading] = useState(false);
+    const [user, setUser] = useState(email);
     const [descriptionRef, setDescriptionRef] = useState('');
     const [message, setMessage] = useState('');
     const [temperature, setTemperature] = useState(0.2);
@@ -23,6 +27,7 @@ const ProfileDescription = () => {
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({
+                        user: user,
                         message: reqBody,
                         temperature: temperature,
                         maxWords: maxWords,
@@ -96,9 +101,6 @@ const ProfileDescription = () => {
     return (
       <div>
         <div className="profile-box" style={{outline:'2px solid', width:'30vw', padding:'20px'}}>
-            <div className="profile-header">
-                <Profile />
-            </div>
             <div className="profile-body">
                 <h1>Profile Description:</h1>
                 <TextField
