@@ -1,6 +1,6 @@
 import React, {useRef, useState, useEffect} from "react";
-import Profile from "./Profile";
 import { Button, TextField, Typography, Slider, FormControl, InputLabel, Select, MenuItem } from "@mui/material";
+import "./ProfileDescription.css";
 
 type ProfileDescriptionProps = {
     text: string,
@@ -109,7 +109,7 @@ const ProfileDescription = ({text, onChange}:ProfileDescriptionProps) => {
 
     return (
       <div>
-        <div className="profile-box" style={{ display: 'flex', flexDirection: 'row', alignItems: 'stretch', border: '1px solid #ccc', borderRadius: '8px'}}>
+        <div className="profile-box">
             <TextField
                 multiline
                 fullWidth
@@ -118,7 +118,7 @@ const ProfileDescription = ({text, onChange}:ProfileDescriptionProps) => {
                 style={{ flex: '1', height: '100%', borderRadius: '8px' }}
             />
             {message && (
-                <div className="profile-output" style={{ flex: '1', padding: '10px', backgroundColor: '#f9f9f9', alignItems: 'center', justifyContent: 'center', borderRadius: '8px' }}>
+                <div className="profile-output">
                     <Typography
                         sx={{ wordBreak: "break-word" }}
                     >
@@ -128,7 +128,7 @@ const ProfileDescription = ({text, onChange}:ProfileDescriptionProps) => {
                 </div>
             )}
         </div>
-            <div style={{display: 'flex', justifyContent: 'space-between', marginBottom: '10px'}}>
+            <div className="rewrite-button">
                 <Button onClick={handleClick}> Rewrite With AI </Button>
                 <Button onClick={handleAdvanceSetting}> Advance Setting </Button>
             </div>

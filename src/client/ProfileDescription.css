@@ -1,0 +1,22 @@
+.profile-box {
+    display: 'flex';
+    flex-direction: 'row';
+    align-items: 'stretch';
+    border: '1px solid #ccc';
+    border-radius: '8px'
+}
+
+.profile-output {
+    flex: '1';
+    padding: '10px';
+    background-color: '#f9f9f9';
+    align-items: 'center';
+    justify-content: 'center';
+    border-radius: '8px'
+}
+
+.rewrite-button {
+    display: 'flex';
+    justify-content: 'space-between';
+    margin-bottom: '10px'
+}
