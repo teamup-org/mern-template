@@ -1,10 +1,18 @@
 import express from 'express';
 import path from 'path';
-import cors from 'cors';
+import cors from 'cors'
+import OpenAI from 'openai';
+const dotenv = require('dotenv');
+dotenv.config();
+
 import { MongoClient } from 'mongodb';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+const openai = new OpenAI({apiKey : process.env.OPENAI_API_KEY});
+
+app.use(cors())
+app.use(express.json())
 
 const url = 'mongodb://localhost:27017'; 
 // const url = 'mongodb://root:example@localhost:27017'; // use this link when using Docker for MongoDB
@@ -65,7 +73,7 @@ app.post('/api/users/create', async (req, res) => {
     const result = await users.insertOne({ 
       name, 
       email, 
-      description: description || 'No profile description', 
+      description: description || '', 
       time: new Date() 
     });
     console.log(`New user created with ID: ${result.insertedId}`);
@@ -156,6 +164,19 @@ app.use(express.static(path.join(__dirname, '..')));
 // Example of a simple API endpoint (order matters)
 app.get('/api', (req, res) => {
   res.json({ message: 'Hello, world!' });
+});
+
+app.post('/rewrite-ai', async (req, res) => {
+  const {message, temperature, maxWords, tone} = req.body;
+
+  const completion = await openai.chat.completions.create({
+    messages: [ {role: "system", content: `You are an assistant that provides information in an ${tone} tone.`},
+      { role: "user", content: `Rewrite this description in the first person with ${maxWords} words or less: ${message}` }],
+    model: "gpt-3.5-turbo",
+    temperature: temperature,
+  });
+
+  res.json({message: completion.choices[0].message.content})
 });
 
 // Fallback for SPA routing
