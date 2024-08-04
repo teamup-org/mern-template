@@ -73,7 +73,7 @@ app.post('/api/users/create', async (req, res) => {
     const result = await users.insertOne({ 
       name, 
       email, 
-      description: description || 'No profile description', 
+      description: description || '', 
       time: new Date() 
     });
     console.log(`New user created with ID: ${result.insertedId}`);
@@ -219,7 +219,7 @@ app.post('/rewrite-ai', async (req, res) => {
 
   const completion = await openai.chat.completions.create({
     messages: [ {role: "system", content: `You are an assistant that provides information in an ${tone} tone.`},
-      { role: "user", content: `Rewrite this description with ${maxWords} words or less: ${message}` }],
+      { role: "user", content: `Rewrite this description in the first person with ${maxWords} words or less: ${message}` }],
     model: "gpt-3.5-turbo",
     temperature: temperature,
   });
