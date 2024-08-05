@@ -110,5 +110,5 @@
   "include": [
     "src",
     "src/images.d.ts"
-  ]
+, "PdfExtractor.js"  ]
 }

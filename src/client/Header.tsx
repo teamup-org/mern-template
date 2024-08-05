@@ -20,6 +20,7 @@ const Header = () => {
         <ul>
           <li><Link to="/about-us">About Us</Link></li>
           <li><Link to="/about">About this product</Link></li>
+          <li><Link to="/pdf-extractor">PDF Extractor</Link></li>
           <li>{isAuthenticated ? (
               <Link to="/profile-gallery">Profile Gallery</Link>
             ) : (

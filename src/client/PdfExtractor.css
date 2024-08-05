@@ -1,0 +1,98 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+.pdf-extractor-page {
+  text-align: center;
+}
+
+.primary-button {
+  background-color: black;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  text-decoration: none;
+}
+
+.primary-button:hover {
+  background-color: rgb(75, 75, 75);
+}
+
+.intro-section {
+  padding: 130px 20px 80px;
+  background: #f0f0f0;
+}
+
+.intro-section h1 {
+  font-size: 42px;
+  margin: 0 0 10px;
+}
+
+.upload-section {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 20px 60px;
+}
+
+.file-upload {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 40px;
+}
+
+.upload-btn {
+  background-color: #FFD700;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.upload-btn input[type="file"] {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+}
+
+.resume-preview {
+  border: 1px solid #ccc;
+  padding: 10px;
+  width: 400px;
+  height: 600px;
+  resize: none;
+  font-size: 14px;
+  font-family: Arial, sans-serif;
+}
+
+.form-section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.form-input {
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  width: 300px;
+}
+
+.form-textarea {
+  height: 100px;
+}
