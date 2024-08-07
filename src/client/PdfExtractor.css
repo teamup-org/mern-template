@@ -9,18 +9,19 @@ body, html {
 }
 
 .primary-button {
-  background-color: black;
-  color: white;
+  background-color: #000;
+  color: #fff;
   padding: 10px 20px;
   border-radius: 5px;
   border: none;
   cursor: pointer;
   font-size: 16px;
   text-decoration: none;
+  margin-top: 20px;
 }
 
 .primary-button:hover {
-  background-color: rgb(75, 75, 75);
+  background-color: #4b4b4b;
 }
 
 .intro-section {
@@ -56,6 +57,8 @@ body, html {
   border-radius: 4px;
   margin-bottom: 20px;
   position: relative;
+  display: flex;
+  align-items: center;
 }
 
 .upload-btn input[type="file"] {
@@ -68,6 +71,11 @@ body, html {
   top: 0;
 }
 
+.upload-btn span {
+  display: block;
+  margin-left: 10px;
+}
+
 .resume-preview {
   border: 1px solid #ccc;
   padding: 10px;
@@ -76,23 +84,4 @@ body, html {
   resize: none;
   font-size: 14px;
   font-family: Arial, sans-serif;
-}
-
-.form-section {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.form-input {
-  margin-bottom: 10px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 14px;
-  width: 300px;
-}
-
-.form-textarea {
-  height: 100px;
 }

@@ -59,11 +59,14 @@ const PdfExtractor: React.FC = () => {
 
         <section className="upload-section">
           <div className="file-upload">
-            <input type="file" id="inpFile" onChange={handleFileChange} />
-            <button type="button" id="btnUpload" onClick={handleUpload}>Upload</button>
+            <label className="upload-btn">
+              <input type="file" id="inpFile" onChange={handleFileChange} />
+              <span>Upload resume</span>
+            </label>
+            <button type="button" className="primary-button" id="btnUpload" onClick={handleUpload}>Upload</button>
             <textarea
               id="resultText"
-              style={{ width: '300px', height: '150px' }}
+              className="resume-preview"
               value={resultText}
               readOnly
               placeholder="Your PDF text will appear here..."
