@@ -8,11 +8,6 @@ const isDevelopment = process.env.NODE_ENV !== 'production';
 
 module.exports = {
   mode: isDevelopment ? 'development' : 'production',
-  devServer: {
-    historyApiFallback: true,
-    client: { overlay: false },
-    historyApiFallback: true,
-  },
   entry: {
     main: './src/client/index.tsx',
   },
@@ -24,11 +19,11 @@ module.exports = {
         use: 'babel-loader',
       },
       {
-        test: /\.css$/, // Add this rule for CSS files
+        test: /\.css$/,
         use: ['style-loader', 'css-loader'],
       },
       {
-        test: /\.(png|jpe?g|gif|svg)$/i, // Add this rule for image files
+        test: /\.(png|jpe?g|gif|svg)$/i,
         use: [
           {
             loader: 'file-loader',
@@ -51,5 +46,17 @@ module.exports = {
   ].filter(Boolean),
   resolve: {
     extensions: ['.js', '.ts', '.tsx'],
+  },
+  devServer: {
+    historyApiFallback: true,
+    client: { overlay: false },
+    proxy: [
+      {
+        context: ['/extract-text'],
+        target: 'http://localhost:3000',
+        changeOrigin: true,
+      },
+    ],
+    port: 8080,
   },
 };

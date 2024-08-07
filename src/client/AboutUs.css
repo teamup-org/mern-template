@@ -1,14 +1,16 @@
+/* AboutUs.css */
+
 body, html {
   margin: 0;
   padding: 0;
   font-family: Arial, sans-serif;
 }
 
-.home-page {
+.about-page {
   text-align: center;
 }
 
-.body-button {
+.primary-button {
   background-color: black;
   color: white;
   padding: 10px 20px;
@@ -19,99 +21,69 @@ body, html {
   text-decoration: none;
 }
 
-.body-button:hover {
+.primary-button:hover {
   background-color: rgb(75, 75, 75);
 }
 
-.hero {
+.intro-section {
   padding: 130px 20px 80px;
   background: #f0f0f0;
 }
 
-.hero h1 {
+.intro-section h1 {
   font-size: 42px;
   margin: 0 0 10px;
 }
 
-.hero p {
+.intro-section p {
   font-size: 22px;
   margin: 0 0 20px;
   max-width: 800px;
   margin: 0 auto 20px;
 }
 
-.content {
+.info-section {
   padding: 20px 60px;
 }
 
-.content-item {
+.info-item {
   display: flex;
   align-items: flex-start; /* Align items to the start of the flex container */
   justify-content: space-between;
   margin-bottom: 60px;
 }
 
-.content-image {
+.info-image {
   width: 45%; /* Adjust the width to fit the layout */
   height: auto; /* Maintain aspect ratio */
   max-height: 300px;
   object-fit: contain; /* Ensure the entire image is visible */
 }
 
-.text-container {
+.text-section {
   width: 45%;
   text-align: left;
 }
 
-.text-container.left-text {
+.text-section.left-align {
   text-align: left;
 }
 
-.text-container.right-text {
+.text-section.right-align {
   text-align: left; /* Ensure text is left-aligned even on the right */
 }
 
-.text-container h2 {
+.text-section h2 {
   font-size: 28px;
 }
 
-.text-container p {
+.text-section p {
   font-size: 20px;
 }
 
-.features {
-  background: #f8f8f8;
-  padding: 30px 60px 60px;
-  text-align: left;
-}
 
-.features h2 {
-  font-size: 28px;
-}
 
-.features-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-}
 
-.feature-item {
-  width: 45%;
-  margin: 10px 0;
-}
-
-.features-grid .feature-item:nth-child(even) {
-  margin-left: auto;
-}
-
-.feature-item h3 {
-  font-size: 24px;
-  font-weight: bold;
-}
-
-.feature-item p {
-  font-size: 18px;
-}
 
 footer {
   padding: 20px;

@@ -1,22 +1,22 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useAuth0 } from "@auth0/auth0-react";
+import { useAuth0, User } from "@auth0/auth0-react";
 import Profile from "./Profile";
 import Header from "./Header";
+import Footer from "./Footer";
 import './HomePage.css';
 
 import sample1 from './images/sample1.png';
 import sample2 from './images/sample2.jpg';
-import logo from './images/teamup-logo.png';
 
 const HomePage = () => {
   const { loginWithRedirect, logout, isAuthenticated, getAccessTokenSilently, user } = useAuth0();
 
-  const createUser = async (userInfo: any) => {
+  const createUser = async (userInfo: User) => {
     try {
       const accessToken = await getAccessTokenSilently();
       console.log('Access Token:', accessToken);
-  
+
       const response = await fetch('http://localhost:3000/api/users/create', {
         method: 'POST',
         headers: {
@@ -29,7 +29,7 @@ const HomePage = () => {
           description: 'No profile description',
         }),
       });
-  
+
       if (response.ok) {
         const data = await response.json();
         console.log('User created:', data);
@@ -42,8 +42,8 @@ const HomePage = () => {
       console.error('Error creating user:', error);
     }
   };
-  
-  const updateUserTime = async (email: string) => {
+
+  const updateUserTime = async (email: any) => {
     try {
       const accessToken = await getAccessTokenSilently();
       const response = await fetch('http://localhost:3000/api/users/update', {
@@ -57,7 +57,7 @@ const HomePage = () => {
           time: new Date(),
         }),
       });
-  
+
       if (response.ok) {
         console.log('User time updated');
       } else if (response.status === 404) {
@@ -69,7 +69,6 @@ const HomePage = () => {
       console.error('Error updating user:', error);
     }
   };
-  
 
   useEffect(() => {
     if (isAuthenticated && user) {
@@ -79,41 +78,14 @@ const HomePage = () => {
 
   return (
     <div className="home-page">
-      <header>
-        <div className="logo">
-          <img src={logo} alt="TeamUp Logo" className="logo-image" />  {/*Replace logo with respective team app logo*/}
-        </div>
-        <nav>
-          <ul>
-            <li><Link to="/">About Us</Link></li>
-            <li><Link to="/about">About this product</Link></li>
-            {isAuthenticated ? (
-              <Header/>
-            ) : (null)}
-            <li>
-              {isAuthenticated ? (
-                <button
-                  className="nav-button button"
-                  onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}
-                >
-                  Log Out
-                </button>
-              ) : (
-                <button className="nav-button button" onClick={() => loginWithRedirect()}>
-                  Log In
-                </button>
-              )}
-            </li>
-          </ul>
-        </nav>
-      </header>
-      
+      <Header />
+
       <main>
         <section className="hero">
           <h1>Impact the world Together</h1>
           <p>Our passionate volunteers are the driving force behind our success.<br/>This dedicated team contributes 
             their time, talents, and energy across a wide range of areas to support our mission.</p>
-          <button className="button">Learn More</button>
+          <button className="body-button">Learn More</button>
         </section>
         
         <section className="content">
@@ -121,16 +93,16 @@ const HomePage = () => {
             <div className="text-container left-text">
               <h2>Product #1</h2>
               <p>Here we will explain more about our first product from Team Up.</p>
-              <button className="button">Learn More</button>
+              <button className="body-button">Learn More</button>
             </div>
-            <img src={sample1} alt="Content 1" />
+            <img src={sample1} alt="Content 1" className="content-image" />
           </div>
           <div className="content-item">
-            <img src={sample2} alt="Content 2" />
+            <img src={sample2} alt="Content 2" className="content-image" />
             <div className="text-container right-text">
               <h2>Product #2</h2>
               <p>Here we will explain more about our second product from Team Up.</p>
-              <button className="button">Learn More</button>
+              <button className="body-button">Learn More</button>
             </div>
           </div>
         </section>
@@ -160,12 +132,7 @@ const HomePage = () => {
         </section>
       </main>
       
-      <footer>
-        <p>Learn more</p>
-        <button className="button">Learn More</button>
-      </footer>
-      
-      {/* <Profile /> */}
+      <Footer />
     </div>
   );
 };
