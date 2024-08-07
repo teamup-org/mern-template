@@ -1,16 +1,17 @@
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import './StudentViewPage.css';
 import Sidebar from "./Sidebar";
 
 const StudentViewPage = () => {
+    let { state } = useLocation();
     return (
         <div className="homepage">
             <Sidebar />
             <div className="main">
                 <div className="student-status">
-                    <h3>John Smith - On Track</h3>
+                    <h3>{state.firstName} {state.lastName} - On Track</h3>
                     <p>Comprehension: Above Class Average</p>
                     <p>Reading Speed: Class Average</p>
                 </div>

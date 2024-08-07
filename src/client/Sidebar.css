@@ -14,7 +14,8 @@
 }
 
 .sidebar p {
-  padding: 20px;
+  padding: 10px;
+  font-weight: bold;
 }
 
 .sidebar-footer {
@@ -33,33 +34,67 @@
   border: none;
   padding: 20px;
   cursor: pointer;
-  
+  font-weight: bold;
+}
+
+#home {
+  margin-top: 30px;
 }
 
 .search-bar {
   padding-left: 15px;
   padding-right: 25px;
   margin-bottom: 20px;
+  display: block;
+  position: absolute;
+  z-index: 5;
 }
 
 .search-bar input[type=text] {
+  background-color: white;
   border: none;
   border-radius: 10px;
   padding-left: 20px;
   width: 180px;
 }
 
+.searchList {
+  list-style-type: none;
+  display: none;
+  padding: 0;
+  margin: 0 20px 0 20px;
+  width: 140;
+}
+
+.searchList li {
+  padding: 12px;
+  text-decoration: none;
+  color: #0B1129;
+  background-color: white;
+}
+
+.searchList li:hover {
+  background-color: rgb(180, 180, 180);
+}
+
 @media screen and (max-height: 450px) {
   .sidebar {padding-top: 15px;}
+}
+
+.class-list {
+  display: flex;
+  flex-direction: column;
+  align-content: flex-start;
 }
 
 .dropbutton {
   background-color: #0B1129;
   color: white;
-  padding: 20px;
+  padding: 20px 5px 20px 15px;
   font-size: 16px;
   border: none;
   cursor: pointer;
+  font-weight: bold;
 }
 
 .dropbutton:hover, .dropbutton:focus, .sidebar-button:hover, .sidebar-button:focus {
@@ -86,9 +121,14 @@
   color: white;
   margin-left: 30px;
   margin-top: 10px;
+  padding: 5px;
   border: none;
   background-color: #0B1129;
   cursor: pointer;
+}
+
+.class-content {
+  margin-left: 30px;
 }
 
 .student:hover {
@@ -109,4 +149,34 @@
 ::-webkit-scrollbar-thumb {
   background-color: white;
   border-radius: 10px;
+}
+
+.arrow-down {
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  margin-left: 5px;
+}
+
+.arrow-right {
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+  margin-left: 5px;
+}
+
+.in-button {
+  display: flex;
+  flex-direction: row;
+}
+
+.icons {
+  margin-right: 5px;
+  font-size: 20px;
 }
