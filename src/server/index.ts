@@ -2,6 +2,7 @@ import express from 'express';
 import path from 'path';
 import cors from 'cors'
 import OpenAI from 'openai';
+import processResume from '../utils/process';
 const dotenv = require('dotenv');
 dotenv.config();
 
@@ -164,6 +165,12 @@ app.use(express.static(path.join(__dirname, '..')));
 // Example of a simple API endpoint (order matters)
 app.get('/api', (req, res) => {
   res.json({ message: 'Hello, world!' });
+});
+
+app.post('/api/process-resume', (req, res) => {
+  const { resumeText } = req.body; // Only expecting resumeText
+  const results = processResume(resumeText);
+  res.json(results);
 });
 
 app.post('/rewrite-ai', async (req, res) => {
