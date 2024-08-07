@@ -13,20 +13,20 @@ const Sidebar = () => {
   const [students, setStudents] = useState([{firstName: 'John', lastName: 'Smith'}]);
   const [error, setError] = useState('');
 
-  useEffect(() => {
-    axios.get('http://localhost:3000/api/teacher/students', {
-      data: {
-        teacherId: /*teacherId*/
-      }
-    })
-    .then(response => {
-      setStudents(response.data.students);
-    })
-    .catch(error => {
-      setError('Failed to retrieve students');
-      console.error('There was an error retrieving the students!', error);
-    });
-  }, [/*teacherId*/]);
+  //useEffect(() => {
+    //axios.get('http://localhost:3000/api/teacher/students', {
+      //data: {
+        //teacherId: /*teacherId*/
+      //}
+    //})
+    //.then(response => {
+      //setStudents(response.data.students);
+    //})
+    //.catch(error => {
+      //setError('Failed to retrieve students');
+      //console.error('There was an error retrieving the students!', error);
+    //});
+  //}, [/*teacherId*/]);
 
   console.log(students)
 
