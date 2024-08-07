@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import processResume from '../utils/process'; // Import the processResume function
+import Header from './Header';
+import Footer from './Footer';
+import './ProcessResume.css';
 
 type Result = {
   keyword: string;
@@ -21,6 +24,7 @@ const ProcessResume: React.FC = () => {
 
   return (
     <div>
+      <Header />
       <h1>Process Resume</h1>
       <textarea
         value={resumeText}
@@ -34,6 +38,7 @@ const ProcessResume: React.FC = () => {
           <pre>{JSON.stringify(analysisResult, null, 2)}</pre>
         </div>
       )}
+      <Footer />
     </div>
   );
 };

@@ -54,7 +54,11 @@ const Header = () => {
           </li>
         </ul>
       </nav>
-      {isAuthenticated && <Profile />} {/* Render Profile outside of ul */}
+      {isAuthenticated && (
+        <div className="profile-image-container">
+          <Profile />
+        </div>
+      )}
     </header>
   );
 };
